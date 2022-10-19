@@ -4,17 +4,6 @@ const initialState = {
   currentUser: null,
   isLoading: true,
   isLogin: false,
-  project: [],
-  Sprint: [],
-  success: null,
-};
-
-export const loginAxios = (data: any) => {
-  return async function (dispatch: any) {
-    console.log(data);
-
-    dispatch(loginUser(true));
-  };
 };
 
 const userSlice = createSlice({
@@ -22,7 +11,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     registerUser: (state, action) => {
-      state.success = action.payload;
+      // 회원가입
     },
 
     loginUser: (state, action) => {

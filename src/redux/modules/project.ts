@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   project: [],
-  sprint: [], // ASK: camelCase 준수
+  sprint: [],
 };
 
 const projectSlice = createSlice({

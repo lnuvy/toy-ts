@@ -8,17 +8,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 // import ProjectList from "../ProjectPage/ProjectList";
 
-const SampleNextArrow = (props: any) => {
-  const { className, style, onClick } = props;
-  return <div className={className} style={{ ...style, display: "block", background: "red" }} onClick={onClick} />;
-};
-
-const SamplePrevArrow = (props: any) => {
-  const { className, style, onClick } = props;
-  return <div className={className} style={{ ...style, display: "block", background: "green" }} onClick={onClick} />;
+let settings = {
+  dots: true, //컨텐츠로 바로 이동이 가능한 버튼(false시 사라진다.)
+  infinite: true, //컨텐츠 끝까지 갔을때 다음 콘텐츠로 가져와 반복
+  speed: 500, //콘텐츠 이동속도
+  slidesToShow: 1, //한 화면에 보이는 콘텐츠 개수
+  slidesToScroll: 1, //한번에 넘어가는 콘텐츠 수
+  cssEase: "linear",
+  // nextArrow: <SampleNextArrow />,
+  // prevArrow: <SamplePrevArrow />,
 };
 
 function LandingPage() {
+  const dispatch = useDispatch(); // ASK: 선언부 위치
+
+  const isLoading = useSelector((state: RootState) => state.user!.isLoading);
+  const [getlists, setlists] = useState(null);
+
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [search, setSearch] = useState("");
@@ -26,16 +32,6 @@ function LandingPage() {
   const [loading, setLoading] = useState(false);
   const { handleSubmit } = useForm();
 
-  let settings = {
-    dots: true, //컨텐츠로 바로 이동이 가능한 버튼(false시 사라진다.)
-    infinite: true, //컨텐츠 끝까지 갔을때 다음 콘텐츠로 가져와 반복
-    speed: 500, //콘텐츠 이동속도
-    slidesToShow: 1, //한 화면에 보이는 콘텐츠 개수
-    slidesToScroll: 1, //한번에 넘어가는 콘텐츠 수
-    cssEase: "linear",
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
   const slider = useRef(null);
 
   // const target = (tg) => {
@@ -90,16 +86,12 @@ function LandingPage() {
   const closeMenu = () => setClick(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // ASK: 선언부 위치
 
   // ASK: camelCase
   // const Id = useSelector((state: RootState) => state.user!.currentUser);
   // const data = useSelector((state: RootState) => state.project.project);
 
   let sessionStorge = window.sessionStorage;
-
-  const isLoading = useSelector((state: RootState) => state.user!.isLoading); // ASK
-  const [getlists, setlists] = useState(null);
 
   useEffect(() => {
     // TODOS: projectList Dispatch
@@ -125,7 +117,7 @@ function LandingPage() {
               <a href="">Home</a>
             </li>
             <li>
-              {/* <button onClick={() => logout()}>Logout</button> */}
+              {/* <button onClick={logout}>Logout</button> */}
               {/* <button onClick={logout}>Logout</button> */}
               {/* ASK: 함수 선언 */}
             </li>
