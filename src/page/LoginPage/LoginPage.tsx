@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { loginUser } from "../../redux/_actions/user_actions";
 import { useDispatch } from "react-redux";
-const server = "/login";
+import { loginAxios, loginUser } from "../../redux/modules/user";
 
 function LoginPage() {
   const {
@@ -18,20 +17,28 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     const email = data.email;
     const password = data.password;
     const body = JSON.stringify({ email, password });
-    console.log(body);
+
+    console.log(data);
+
     setLoading(true);
-    dispatch(loginUser(data)).then((res) => {
+    axios.post("/login", data).then((res) => {
       console.log(res);
-      if (res.payload.data.message == "로그인 성공") {
-        navigate("/LandingPage");
-      } else {
-        navigate("/");
-      }
+
+      dispatch(loginUser(true));
     });
+
+    // .then((res) => {
+    //   console.log(res);
+    //   if (res.payload.data.message == "로그인 성공") {
+    //     navigate("/LandingPage");
+    //   } else {
+    //     navigate("/");
+    //   }
+    // });
   };
 
   console.log();
@@ -43,12 +50,11 @@ function LoginPage() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
-        <input name="email" type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
+        <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
         {errors.email && <p>This email field is required</p>}
 
         <label>Password</label>
         <input
-          name="password"
           type="password"
           {...register("password", {
             required: true,

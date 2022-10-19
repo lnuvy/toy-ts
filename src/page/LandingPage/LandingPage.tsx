@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import image1 from "../../images/image1.png";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../redux/_actions/user_actions";
-import { projectlist, deleteProject } from "../../redux/_actions/user_actions";
+import { RootState } from "../../redux/store";
 // import ProjectList from "../ProjectPage/ProjectList";
 
-const SampleNextArrow = (props) => {
+const SampleNextArrow = (props: any) => {
   const { className, style, onClick } = props;
   return <div className={className} style={{ ...style, display: "block", background: "red" }} onClick={onClick} />;
 };
 
-const SamplePrevArrow = (props) => {
+const SamplePrevArrow = (props: any) => {
   const { className, style, onClick } = props;
   return <div className={className} style={{ ...style, display: "block", background: "green" }} onClick={onClick} />;
 };
@@ -40,16 +38,16 @@ function LandingPage() {
   };
   const slider = useRef(null);
 
-  const target = (tg) => {
-    slider.current = tg;
-  };
+  // const target = (tg) => {
+  //   slider.current = tg;
+  // };
 
-  const nextBtn = () => {
-    slider.current.slickNext();
-  };
-  const prevBtn = () => {
-    slider.current.slickPrev();
-  };
+  // const nextBtn = () => {
+  //   slider.current.slickNext();
+  // };
+  // const prevBtn = () => {
+  //   slider.current.slickPrev();
+  // };
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleBar, setToggleBar] = useState(true);
@@ -77,51 +75,45 @@ function LandingPage() {
     setModalOpen(false);
   };
 
-  const onChangeSearch = (e) => {
-    e.preventDefault();
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault(); // ASK: 붙인 이유?
     setSearch(e.target.value);
   };
-  const onSearch = (e) => {
+
+  const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (search === null || search === "") {
-      axios.get("").then((res) => {});
-    } else {
-    }
+
+    // TODOS: 검색 결과 axios 통신
   };
+
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const Id = useSelector((state) => state.user.currentUser);
-  const data = useSelector((state) => state.project.project);
+  const dispatch = useDispatch(); // ASK: 선언부 위치
 
-  console.log(Id, data);
-  //sessionStorge
+  // ASK: camelCase
+  // const Id = useSelector((state: RootState) => state.user!.currentUser);
+  // const data = useSelector((state: RootState) => state.project.project);
+
   let sessionStorge = window.sessionStorage;
-  const isLoading = useSelector((state) => state.user.isLoading);
+
+  const isLoading = useSelector((state: RootState) => state.user!.isLoading); // ASK
   const [getlists, setlists] = useState(null);
-  //컴포넌트가 렌더링 될 때마다 특정 작업을 실행할 수 있도록 하는 hook
+
   useEffect(() => {
-    const project = async () => {
-      dispatch(projectlist(Id)).then((res) => {
-        console.log(res);
-        setlists(res);
-        console.log(data);
-      });
-    };
-    project();
+    // TODOS: projectList Dispatch
   }, []);
-  const deletelist = (projectId) => {
-    dispatch(deleteProject(projectId)).then((res) => {
-      console.log(res);
-    });
-  };
-  const logout = async () => {
-    sessionStorge.removeItem("id");
-    dispatch(logoutUser());
-    navigate("/");
-  };
+
+  // const deletelist = (projectId: string) => {
+  //   dispatch(deleteProject(projectId));
+  // };
+
+  // const logout = async () => {
+  //   sessionStorge.removeItem("id");
+  //   dispatch(logoutUser());
+  //   navigate("/");
+  // };
 
   return (
     <>
@@ -133,13 +125,17 @@ function LandingPage() {
               <a href="">Home</a>
             </li>
             <li>
-              <button onClick={() => logout()}>Logout</button>
+              {/* <button onClick={() => logout()}>Logout</button> */}
+              {/* <button onClick={logout}>Logout</button> */}
+              {/* ASK: 함수 선언 */}
             </li>
           </ul>
         </nav>
       </div>
       <h2>Search</h2>
-      <form onSubmit={(e) => onSearch(e)}>
+      {/* <form onSubmit={(e) => onSearch(e)}> */}
+      <form onSubmit={onSearch}>
+        {/* ASK: 함수 선언 */}
         <input type="text" value={search} placeholder="검색어를 입력하세요" onChange={onChangeSearch} />
         <button type="submit">검색</button>
       </form>
@@ -156,7 +152,7 @@ function LandingPage() {
     */}
 
       <div>
-        {data &&
+        {/* {data &&
           data.map((project) => (
             <ProjectList
               key={project.projectId}
@@ -164,67 +160,8 @@ function LandingPage() {
               project={project}
               deletelist={deletelist}
             />
-          ))}
+          ))} */}
       </div>
-
-      {/*
-    <Slider {...settings}>
-      <div className="card-wrapper">
-        <h3>1</h3>
-        <div className="card-image">
-          <img src=""/>
-        </div>
-        <ul className="social-icons">
-          <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-        </ul>
-      </div>
-      <div className="card-wrapper">
-        <h3>2</h3>
-        <div className="card-image">
-          <img src=""/>
-        </div>
-        <ul className="">
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-        </ul>
-      </div>
-
-      <div className="card-wrapper">
-        <h3>3</h3>
-        <div className="card-image">
-          <img src=""/>
-        </div>
-        <ul className="">
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-        </ul>
-        <div className="details">
-          <h2></h2>
-        </div>
-      </div>
-
-      <div className="card-wrapper">
-        <h3>4</h3>
-        <div className="card-image">
-          <img src=""/>
-        </div>
-        <ul className="">
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-          <li><a href="#"><i className="fa fa-"></i></a></li>
-        </ul>
-      </div>
-
-    </Slider>
-    */}
     </>
   );
 }

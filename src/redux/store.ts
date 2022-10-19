@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import user from "./_reducer/user_reducer";
-import project from "./_reducer/project_reducer";
+// import logger from "redux-logger";
+import user from "./modules/user";
+import project from "./modules/project";
 
 export const store = configureStore({
   reducer: {
     user,
     project,
   },
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
