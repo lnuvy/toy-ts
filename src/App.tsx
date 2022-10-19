@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./page/LoginPage/LoginPage";
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
@@ -16,6 +16,6 @@ function App() {
       {/* <Route path="/Sprint/:sprintId" element={<Sprint />} /> */}
     </Routes>
   );
-}
+};
 
 export default App;
