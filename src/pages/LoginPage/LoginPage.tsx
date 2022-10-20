@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/modules/user";
+import { loginUser } from "@redux/modules/user";
 
 function LoginPage() {
   const {

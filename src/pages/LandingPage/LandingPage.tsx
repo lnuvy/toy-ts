@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import image1 from "../../images/image1.png";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "@redux/store";
 import { Wrapper } from "./Styles";
 
 function LandingPage() {
