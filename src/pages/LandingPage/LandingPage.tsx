@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/store";
-import { Wrapper } from "./Styles";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Wrapper, ProjectContainer } from "./Styles";
+import Card from "@components/Card/Card";
+import MainSearchBar from "@components/MainSearchBar";
+import GlobalSideBar from "@components/GSB/GlobalSideBar";
+import AuthLayout from "@pages/AuthLayout";
 
 function LandingPage() {
   const dispatch = useDispatch();
@@ -18,12 +21,6 @@ function LandingPage() {
   //   setToggleMenu(!toggleMenu);
   //   setToggleBar(!toggleBar);
   // };
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentPosts, setCurrentPosts] = useState([]);
-  const postsPerPage = 10;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   //modal창
   // const [modalOpen, setModalOpen] = useState(false);
@@ -50,38 +47,18 @@ function LandingPage() {
   }, []);
 
   return (
-    <Wrapper>
-      <h2>Search</h2>
-      {/* <form onSubmit={(e) => onSearch(e)}> */}
-      <form onSubmit={onSearch}>
-        {/* ASK: 함수 선언 */}
-        {/* <input type="text" value={search} placeholder="검색어를 입력하세요" onChange={onChangeSearch} />
-        <button type="submit">검색</button> */}
-      </form>
+    <AuthLayout>
+      Project Search
+      <MainSearchBar />
+      <ProjectContainer>
+        <Card />
+        <Card />
+        <Card />
+      </ProjectContainer>
       <Link style={{ float: "right" }} to="/ProjectPage">
         ADD Project
       </Link>
-
-      {/*ADD Project 모달
-    <button onClick={openModal}>Modal</button>
-    <Modal open={modalOpen} close={closeModal} header="Modal heading">
-      <label>삭제하시겠습니까?</label>
-      <br/>
-    </Modal>
-    */}
-
-      <div>
-        {/* {data &&
-          data.map((project) => (
-            <ProjectList
-              key={project.projectId}
-              handleSubmit={handleSubmit}
-              project={project}
-              deletelist={deletelist}
-            />
-          ))} */}
-      </div>
-    </Wrapper>
+    </AuthLayout>
   );
 }
 
