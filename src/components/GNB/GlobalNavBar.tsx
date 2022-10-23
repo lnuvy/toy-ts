@@ -1,11 +1,28 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { BurgerIcon, SidebarBtn } from "./Styles";
 
 const GlobalNavBar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+
+    console.log(checked);
+
+    setIsOpen(checked);
+  };
+
   return (
     <NavigationBarWarp>
+      {/* <SidebarBtn>
+        <input type="checkbox" id="sidebar" style={{ display: "none" }} checked={isOpen} onChange={onChangeToggle} />
+        <BurgerIcon toggle={isOpen} htmlFor="sidebar">
+          <span />
+          <span />
+          <span />
+        </BurgerIcon>
+      </SidebarBtn> */}
       <div>
         <Title>타이틀</Title>
       </div>
