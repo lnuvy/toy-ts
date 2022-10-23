@@ -12,7 +12,6 @@ const layoutSlice = createSlice({
   name: "layout",
   initialState,
   reducers: {
-    // 사이드바 on/off 제어
     toggleSidebar: (state, action) => {
       state.sidebar = action.payload;
     },

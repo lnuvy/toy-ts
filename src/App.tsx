@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "@pages/LandingPage/LandingPage";
-import GlobalNavBar from "@components/GNB/GlobalNavBar";
+import ProjectPage from "@pages/ProjectPage/ProjectPage";
 // import LoginPage from "@pages/LoginPage/LoginPage";
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         {/* <Route path="/" element={<LandingPage />} /> */}
 
-        {/* <Route path="/ProjectPage" element={<ProjectPage />} /> */}
+        <Route path="/ProjectPage" element={<ProjectPage />} />
         {/* <Route path="/SprintPage/:projectId" element={<SprintPage />} /> */}
         {/* <Route path="/CheckPage" element={<CheckPage />} /> */}
         {/* <Route path="/PersonalProject/:projectId" element={<PersonalProject />} /> */}

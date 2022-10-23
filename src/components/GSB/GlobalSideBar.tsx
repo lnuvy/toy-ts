@@ -1,16 +1,12 @@
 import React from "react";
-import { ChannelsWrap, MenuScroll, SlackConnect, Title } from "./Styles";
+import { ChannelsWrap, MenuScroll, Title } from "./Styles";
 
 const GlobalSideBar = () => {
   return (
     <ChannelsWrap>
       <Title>Recent Update</Title>
       <MenuScroll>
-        <div>
-          <SlackConnect>
-            <span style={{ cursor: "pointer" }}>Slack Connect</span>
-          </SlackConnect>
-        </div>
+        <div>하단 메뉴들</div>
       </MenuScroll>
     </ChannelsWrap>
   );

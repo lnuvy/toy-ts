@@ -1,11 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  padding: 2rem 1rem;
-  /* display: flex; */
-  /* flex-direction: column; */
-`;
-
 export const ProjectContainer = styled.div`
   margin-top: 80px;
   flex-wrap: wrap;

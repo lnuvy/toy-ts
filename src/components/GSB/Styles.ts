@@ -15,8 +15,8 @@ export const Title = styled.button`
   height: 49px;
   text-align: left;
   border: none;
-  border-top: 1px solid rgb(82, 38, 83);
-  border-bottom: 1px solid rgb(82, 38, 83);
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
   font-weight: 500;
   font-size: 18px;
   background: transparent;
@@ -27,17 +27,17 @@ export const Title = styled.button`
   cursor: pointer;
 `;
 
-export const SlackConnect = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-  padding: 5px 15px;
-  &:hover {
-    background: #340c35;
-  }
-`;
+// export const SlackConnect = styled.div`
+//   display: flex;
+//   align-items: center;
+//   text-align: left;
+//   width: 100%;
+//   margin-top: 10px;
+//   padding: 5px 15px;
+//   &:hover {
+//     background: #340c35;
+//   }
+// `;
 
 export const MenuScroll = styled.div`
   height: calc(100vh - 38px);
