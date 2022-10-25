@@ -1,29 +1,43 @@
 import styled from "@emotion/styled";
+import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
+import { RootState } from "@redux/store";
 import React, { useState } from "react";
-import { BurgerIcon, SidebarBtn } from "./Styles";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { BurgerIcon } from "./Styles";
 
 const GlobalNavBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const dispatch = useDispatch();
+  const { sidebar } = useSelector((state: RootState) => state.layout);
+  const [isOpen, setIsOpen] = useState(sidebar);
 
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
+    setIsOpen(checked);
+    // dispatch(toggleSidebar(checked));
 
     console.log(checked);
 
-    setIsOpen(checked);
+    if (checked) {
+      dispatch(toggleSidebar(checked));
+      dispatch(closeSidebar(false));
+    } else {
+      dispatch(closeSidebar(true));
+      setTimeout(() => {
+        dispatch(toggleSidebar(checked));
+      }, 300);
+    }
   };
 
   return (
     <NavigationBarWarp>
-      {/* <SidebarBtn>
+      <div style={{ display: "flex" }}>
         <input type="checkbox" id="sidebar" style={{ display: "none" }} checked={isOpen} onChange={onChangeToggle} />
         <BurgerIcon toggle={isOpen} htmlFor="sidebar">
           <span />
           <span />
           <span />
         </BurgerIcon>
-      </SidebarBtn> */}
-      <div>
         <Title>타이틀</Title>
       </div>
 

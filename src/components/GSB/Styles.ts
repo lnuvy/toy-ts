@@ -1,14 +1,24 @@
 import styled from "@emotion/styled";
 
-export const ChannelsWrap = styled.nav`
-  /* width: 20vw; */
+interface SidebarProps {
+  // toggle: boolean;
+  close: boolean;
+}
+
+export const ChannelsWrap = styled.nav<SidebarProps>`
   min-width: 260px;
   display: inline-flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.palette.labelColor};
   color: rgb(188, 171, 188);
   vertical-align: top;
+  position: relative;
+  left: 0;
+  transition: left 0.5s;
+
+  ${({ close }) => (close ? "left: -500px;" : "left: 0;")};
 `;
+// /* ${({ open }) => open && "left: -500px;"} */
 
 export const Title = styled.button`
   width: 100%;

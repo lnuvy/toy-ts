@@ -5,7 +5,9 @@ import { createSlice } from "@reduxjs/toolkit";
  */
 
 const initialState = {
-  sidebar: true,
+  sidebar: true, // 0.3초 후 반영
+  closeAnimation: false, // 닫을때 true로 변경
+  openAnimation: false, // 열때 true로 변경
 };
 
 const layoutSlice = createSlice({
@@ -15,11 +17,19 @@ const layoutSlice = createSlice({
     toggleSidebar: (state, action) => {
       state.sidebar = action.payload;
     },
+
+    closeSidebar: (state, action) => {
+      state.closeAnimation = action.payload;
+    },
+    // openSidebar: (state, action) => {
+    //   state.openAnimation = action.payload;
+    //   state.closeAnimation = !action.payload;
+    // },
   },
 });
 
 const { reducer, actions } = layoutSlice;
 
-export const { toggleSidebar } = actions;
+export const { toggleSidebar, closeSidebar } = actions;
 
 export default reducer;
