@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.borderColor};
 
   &:hover {
-    background-color: #ededed;
+    background-color: ${({ theme }) => theme.palette.hoverColor};
   }
 
   & > h3 {
