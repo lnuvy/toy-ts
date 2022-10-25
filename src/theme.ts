@@ -25,5 +25,7 @@ export const theme = {
     chapterHover: "rgba(205, 217, 229, 0.5)",
     labelColor: "#768390",
     hoverColor: "#f6f8fa",
+    color1: "#eeeeee",
+    color2: "#25B9B9",
   },
 };

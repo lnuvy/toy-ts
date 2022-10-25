@@ -28,6 +28,8 @@ declare module "@emotion/react" {
       chapterHover: string;
       labelColor: string;
       hoverColor: string;
+      color1: string;
+      color2: string;
     };
   }
 }
