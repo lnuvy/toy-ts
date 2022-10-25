@@ -10,15 +10,13 @@ interface Props {
 }
 
 const AuthLayout: React.FC<Props> = ({ children }) => {
-  const { sidebar, openAnimation, closeAnimation } = useSelector((state: RootState) => state.layout);
-
-  console.log("open: ", openAnimation, "close: ", closeAnimation);
+  const { sidebar } = useSelector((state: RootState) => state.layout);
 
   return (
     <Wrapper toggle={sidebar}>
       <GlobalNavBar />
       <div className="content-container">
-        {(sidebar || openAnimation) && <GlobalSideBar />}
+        {sidebar && <GlobalSideBar />}
         <Content>{children}</Content>
       </div>
     </Wrapper>

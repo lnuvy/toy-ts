@@ -14,9 +14,6 @@ const GlobalNavBar = () => {
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
     setIsOpen(checked);
-    // dispatch(toggleSidebar(checked));
-
-    console.log(checked);
 
     if (checked) {
       dispatch(toggleSidebar(checked));

@@ -22,12 +22,8 @@ function LoginPage() {
     const password = data.password;
     const body = JSON.stringify({ email, password });
 
-    console.log(data);
-
     setLoading(true);
     axios.post("/login", data).then((res) => {
-      console.log(res);
-
       dispatch(loginUser(true));
     });
 
