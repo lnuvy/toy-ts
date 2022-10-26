@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
+import { setStorage, getStorage } from "@utils/storage";
+import { useEffect } from "react";
 
 function LoginPage() {
   const {
@@ -16,7 +18,14 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sessionStorage = window.sessionStorage;
+
+  useEffect(() => {
+    const isLogin = getStorage();
+
+    if (isLogin) {
+      navigate("/");
+    }
+  }, []);
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -24,9 +33,9 @@ function LoginPage() {
     axios.post("/login", data).then((res) => {
       console.log(res);
       //sessionStorage에 userId란 키값으로 저장
-      sessionStorage.setItem("userId", res.data.data);
+      setStorage(res.data.data);
       if (res.data.message === "로그인 성공") {
-        navigate("/LandingPage");
+        navigate("/");
       }
       dispatch(loginUser(true));
     });
@@ -58,10 +67,10 @@ function LoginPage() {
 
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
         <input type="submit" disabled={loading} />
-        <Link style={{ color: "gray", textDecoration: "none" }} to="/RegisterPage">
+        <Link style={{ color: "gray", textDecoration: "none" }} to="/registerPage">
           회원가입하기
         </Link>
-        <Link style={{ color: "gray", textDecoration: "none", float: "right" }} to="/CheckPage">
+        <Link style={{ color: "gray", textDecoration: "none", float: "right" }} to="/checkPage">
           회원정보 찾기
         </Link>
       </form>
