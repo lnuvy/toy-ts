@@ -4,6 +4,7 @@ type SidebarProps = {
   toggle: boolean;
 };
 
+/* background-color: ${({ theme }) => theme.palette.text1}; */
 export const BurgerIcon = styled.label<SidebarProps>`
   width: 30px;
   height: 20px;
@@ -15,7 +16,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
     display: block;
     height: 2px;
     width: 30px;
-    background-color: ${({ theme }) => theme.palette.text1};
+
     position: absolute;
     left: 0;
     transition: 0.3s;
