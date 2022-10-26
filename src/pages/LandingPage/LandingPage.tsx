@@ -15,6 +15,7 @@ function LandingPage() {
 
   useEffect(() => {
     // TODOS: projectList Dispatch
+    //
   }, []);
 
   return (
@@ -30,9 +31,7 @@ function LandingPage() {
         <Card />
         <Card />
       </ProjectContainer>
-      <Link style={{ float: "right" }} to="/ProjectPage">
-        ADD Project
-      </Link>
+      <Link to="/ProjectPage">ADD Project</Link>
     </AuthLayout>
   );
 }

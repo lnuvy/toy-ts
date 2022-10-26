@@ -1,25 +1,32 @@
 import GlobalNavBar from "@components/GNB/GlobalNavBar";
 import GlobalSideBar from "@components/GSB/GlobalSideBar";
 import styled from "@emotion/styled";
+import { RootState } from "@redux/store";
 import React from "react";
+import { useSelector } from "react-redux";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const AuthLayout: React.FC<Props> = ({ children }) => {
+  const { sidebar } = useSelector((state: RootState) => state.layout);
+
   return (
-    <Wrapper>
+    <Wrapper toggle={sidebar}>
       <GlobalNavBar />
       <div className="content-container">
-        <GlobalSideBar />
+        {sidebar && <GlobalSideBar />}
         <Content>{children}</Content>
       </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+interface WrapperProps {
+  toggle: boolean;
+}
+const Wrapper = styled.div<WrapperProps>`
   width: 100vw;
   height: 100vh;
 

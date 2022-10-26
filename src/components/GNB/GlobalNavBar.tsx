@@ -1,30 +1,44 @@
 import styled from "@emotion/styled";
+import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
+import { RootState } from "@redux/store";
 import React, { useState } from "react";
-import { BurgerIcon, SidebarBtn } from "./Styles";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { BurgerIcon } from "./Styles";
 
 const GlobalNavBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { sidebar } = useSelector((state: RootState) => state.layout);
+  const [isOpen, setIsOpen] = useState(sidebar);
 
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
 
-    console.log(checked);
-
     setIsOpen(checked);
+
+    if (checked) {
+      dispatch(toggleSidebar(checked));
+      dispatch(closeSidebar(false));
+    } else {
+      dispatch(closeSidebar(true));
+      setTimeout(() => {
+        dispatch(toggleSidebar(checked));
+      }, 300);
+    }
   };
 
   return (
     <NavigationBarWarp>
-      {/* <SidebarBtn>
+      <div style={{ display: "flex" }}>
         <input type="checkbox" id="sidebar" style={{ display: "none" }} checked={isOpen} onChange={onChangeToggle} />
         <BurgerIcon toggle={isOpen} htmlFor="sidebar">
           <span />
           <span />
           <span />
         </BurgerIcon>
-      </SidebarBtn> */}
-      <div>
-        <Title>타이틀</Title>
+        <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
       <span>???님</span>
@@ -36,9 +50,12 @@ export default GlobalNavBar;
 
 const NavigationBarWarp = styled.header`
   height: 44px;
-  background: #1abc9d;
-  color: #ffffff;
-  /* box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1); */
+
+  background-color: ${({ theme }) => theme.palette.color2};
+  color: #fff;
+  /* border-bottom: 1px solid #000; */
+
+  /* box-shadow: 0 1px 12px 0 rgba(0, 0, 0, 0.2); */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,8 +74,8 @@ const Title = styled.button`
   font-size: 18px;
   background: transparent;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 0 2rem;
   margin: 0;
-  color: white;
+  color: #fff;
   cursor: pointer;
 `;
