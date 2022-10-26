@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 // import logger from "redux-logger";
 import user from "./modules/user";
 import project from "./modules/project";
+import layout from "./modules/layout";
 
 export const store = configureStore({
   reducer: {
     user,
     project,
+    layout,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
