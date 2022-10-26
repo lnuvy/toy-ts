@@ -7,7 +7,7 @@ interface Props {
 const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <Wrapper>
-      <div className=".content-tainer">{children}</div>
+      <div className="content-tainer">{children}</div>
     </Wrapper>
   );
 };

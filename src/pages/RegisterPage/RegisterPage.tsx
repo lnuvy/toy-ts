@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
+import { getStorage } from "@utils/storage";
 
 function RegisterPage() {
   const {
@@ -17,13 +18,21 @@ function RegisterPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const isLogin = getStorage();
+
+    if (isLogin) {
+      navigate("/");
+    }
+  }, []);
+
   const onSubmit = async (data: any) => {
     console.log(data.email);
     setLoading(true);
     axios.post("/join", data).then((res) => {
       console.log(res);
       if (res.data.message == "회원가입 성공") {
-        navigate("/");
+        navigate("/login");
       }
     });
   };
@@ -66,7 +75,7 @@ function RegisterPage() {
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
 
         <input type="submit" />
-        <Link style={{ color: "gray", textDecoration: "none" }} to="/">
+        <Link style={{ color: "gray", textDecoration: "none" }} to="/login">
           로그인하기
         </Link>
       </form>
