@@ -9,7 +9,7 @@ export const ChannelsWrap = styled.nav<SidebarProps>`
   min-width: 260px;
   display: inline-flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.palette.color1};
+  background-color: ${({ theme }) => theme.palette.gray4};
   color: rgb(188, 171, 188);
   vertical-align: top;
   position: relative;

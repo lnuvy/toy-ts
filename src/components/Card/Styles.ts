@@ -7,10 +7,8 @@ export const Wrap = styled.div`
   width: 100%;
   padding: 20px;
   /* background-color: #fafafa; */
-
-  border: 1px solid ${({ theme }) => theme.palette.borderColor};
-
+  border: 1px solid ${({ theme }) => theme.palette.gray3};
   &:hover {
-    background-color: ${({ theme }) => theme.palette.hoverColor};
+    background-color: ${({ theme }) => theme.palette.gray5};
   }
 `;

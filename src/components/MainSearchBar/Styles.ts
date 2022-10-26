@@ -5,7 +5,7 @@ export const InputWrap = styled.div`
 `;
 
 export const InputStyles = styled.input`
-  border: 1px solid ${({ theme }) => theme.palette.borderColor};
+  border: 1px solid ${({ theme }) => theme.palette.gray3};
   outline: none;
 
   border-radius: 6px;

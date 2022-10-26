@@ -18,3 +18,9 @@ export const setStorage = (id: string) => {
 
   session.setItem("userId", id);
 };
+
+export const removeStorage = () => {
+  const session = window.sessionStorage;
+
+  session.removeItem("userId");
+};

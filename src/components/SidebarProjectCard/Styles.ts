@@ -10,10 +10,10 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   margin-top: 10px;
   border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.palette.borderColor};
+  border: 1px solid ${({ theme }) => theme.palette.gray3};
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette.hoverColor};
+    background-color: ${({ theme }) => theme.palette.gray5};
   }
 
   & > h3 {

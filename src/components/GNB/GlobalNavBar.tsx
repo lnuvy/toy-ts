@@ -51,7 +51,7 @@ export default GlobalNavBar;
 const NavigationBarWarp = styled.header`
   height: 44px;
 
-  background-color: ${({ theme }) => theme.palette.color2};
+  background-color: ${({ theme }) => theme.palette.personalDefault};
   color: #fff;
   /* border-bottom: 1px solid #000; */
 
@@ -63,6 +63,10 @@ const NavigationBarWarp = styled.header`
   z-index: 99;
   text-align: center;
   padding: 0 1rem;
+
+  & > span {
+    font-size: 2rem 600;
+  }
 `;
 
 const Title = styled.button`
