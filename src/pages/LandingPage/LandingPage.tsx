@@ -8,7 +8,6 @@ import AuthLayout from "@pages/AuthLayout";
 
 function LandingPage() {
   const dispatch = useDispatch();
-
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODOS: 검색 결과 axios 통신

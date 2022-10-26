@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/modules/user";
+import { registerUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
 
-function LoginPage() {
+function RegisterPage() {
   const {
     register,
     formState: { errors },
@@ -16,32 +16,31 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const sessionStorage = window.sessionStorage;
 
   const onSubmit = async (data: any) => {
-    console.log(data);
+    console.log(data.email);
     setLoading(true);
-    axios.post("/login", data).then((res) => {
+    axios.post("/join", data).then((res) => {
       console.log(res);
-      //sessionStorage에 userId란 키값으로 저장
-      sessionStorage.setItem("userId", res.data.data);
-      if (res.data.message === "로그인 성공") {
-        navigate("/LandingPage");
+      if (res.data.message == "회원가입 성공") {
+        navigate("/");
       }
-      dispatch(loginUser(true));
     });
-    setLoading(false);
   };
-
   return (
     <PageLayout>
-      <div>
-        <h3>로그인</h3>
+      <div style={{ textAlign: "center" }}>
+        <h3>회원가입</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
         {errors.email && <p>This email field is required</p>}
+
+        <label>Name</label>
+        <input {...register("name", { required: true, maxLength: 10 })} />
+        {errors.name && errors.name.type === "required" && <p>This name field is required</p>}
+        {errors.name && errors.name.type === "maxLength" && <p>Your input exceed maxinum length</p>}
 
         <label>Password</label>
         <input
@@ -56,17 +55,23 @@ function LoginPage() {
           <p>최소 8자에서 최대 16자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 사용</p>
         )}
 
+        <label>findPasswordAnswer</label>
+        <select>
+          <option>가장 좋아하는 과일</option>
+          <option>좋아하는 색</option>
+        </select>
+        <input {...register("findPasswordAnswer", { required: true })} />
+        {errors.findPasswordAnswer && <p>This field is required</p>}
+
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
-        <input type="submit" disabled={loading} />
-        <Link style={{ color: "gray", textDecoration: "none" }} to="/RegisterPage">
-          회원가입하기
-        </Link>
-        <Link style={{ color: "gray", textDecoration: "none", float: "right" }} to="/CheckPage">
-          회원정보 찾기
+
+        <input type="submit" />
+        <Link style={{ color: "gray", textDecoration: "none" }} to="/">
+          로그인하기
         </Link>
       </form>
     </PageLayout>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
