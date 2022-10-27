@@ -20,6 +20,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
     position: absolute;
     left: 0;
     transition: 0.3s;
+    background-color: ${({ theme }) => theme.palette.gray1};
 
     &:nth-of-type(1) {
       ${({ toggle }) => (toggle ? "top: 50%; transform: rotate(45deg);" : "top: 0;")};
