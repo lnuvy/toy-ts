@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
+import { removeStorage } from "@utils/storage";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -29,6 +30,11 @@ const GlobalNavBar = () => {
     }
   };
 
+  const handleClickLogout = () => {
+    removeStorage();
+    navigate("/login");
+  };
+
   return (
     <NavigationBarWarp>
       <div style={{ display: "flex" }}>
@@ -41,7 +47,7 @@ const GlobalNavBar = () => {
         <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
-      <span>???님</span>
+      <span onClick={handleClickLogout}>???님</span>
     </NavigationBarWarp>
   );
 };
