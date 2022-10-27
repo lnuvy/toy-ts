@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "@pages/LandingPage/LandingPage";
 import ProjectPage from "@pages/ProjectPage/ProjectPage";
 import LoginPage from "@pages/LoginPage/LoginPage";
 import RegisterPage from "@pages/RegisterPage/RegisterPage";
 import CheckPage from "@pages/CheckPage/CheckPage";
+import LandingPage from "@pages/LandingPage/LandingPage";
 
 const App = () => {
   return (
