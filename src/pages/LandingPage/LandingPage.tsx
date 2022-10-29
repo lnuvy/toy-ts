@@ -15,7 +15,6 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const userInfo = useSelector((state: RootState) => state.user);
-
   console.log(userInfo);
 
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
