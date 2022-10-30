@@ -20,7 +20,6 @@ export const ChannelsWrap = styled.nav<SidebarProps>`
 
   ${({ close }) => (close ? "left: -500px;" : "left: 0;")};
 `;
-// /* ${({ open }) => open && "left: -500px;"} */
 
 export const Title = styled.button`
   width: 100%;
