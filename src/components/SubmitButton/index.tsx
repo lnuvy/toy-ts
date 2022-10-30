@@ -3,13 +3,15 @@ import React from "react";
 
 interface Props {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const SubmitButton: React.FC<Props> = ({ children }) => {
-  return <Button>{children}</Button>;
+const SubmitButton: React.FC<Props> = ({ children, onClick }) => {
+  return <Button onClick={onClick}>{children}</Button>;
 };
 
 const Button = styled.button`
+  cursor: pointer;
   background-color: ${({ theme }) => theme.palette.secondColor};
   color: #fff;
   border: none;
