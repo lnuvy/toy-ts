@@ -6,7 +6,7 @@ interface Props {
   label: string;
 }
 
-const LoginInput: React.FC<Props> = ({ type, label }) => {
+const ElInput: React.FC<Props> = ({ type, label }) => {
   return (
     <Label>
       {label}
@@ -37,4 +37,4 @@ const Label = styled.label`
   font-weight: 200;
 `;
 
-export default LoginInput;
+export default ElInput;

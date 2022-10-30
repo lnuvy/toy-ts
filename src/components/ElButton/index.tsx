@@ -6,7 +6,7 @@ interface Props {
   onClick?: () => void;
 }
 
-const SubmitButton: React.FC<Props> = ({ children, onClick }) => {
+const ElButton: React.FC<Props> = ({ children, onClick }) => {
   return <Button onClick={onClick}>{children}</Button>;
 };
 
@@ -21,4 +21,4 @@ const Button = styled.button`
   min-width: 120px;
 `;
 
-export default SubmitButton;
+export default ElButton;
