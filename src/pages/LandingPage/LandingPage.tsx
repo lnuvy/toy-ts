@@ -29,7 +29,6 @@ function LandingPage() {
       navigate("/login");
     } else {
       const a = getInit(isLogin);
-
       console.log("PersonalPage get요청 Init: ", a);
     }
   }, []);
