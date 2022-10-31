@@ -44,12 +44,12 @@ function RegisterPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
-        {errors.email && <p>This email field is required</p>}
+        {errors.email && <p>빈칸을 채워주세요</p>}
 
         <label>Name</label>
         <input {...register("name", { required: true, maxLength: 10 })} />
-        {errors.name && errors.name.type === "required" && <p>This name field is required</p>}
-        {errors.name && errors.name.type === "maxLength" && <p>Your input exceed maxinum length</p>}
+        {errors.name && errors.name.type === "required" && <p>빈칸을 채워주세요</p>}
+        {errors.name && errors.name.type === "maxLength" && <p>최대 10글자</p>}
 
         <label>Password</label>
         <input
@@ -70,7 +70,7 @@ function RegisterPage() {
           <option>좋아하는 색</option>
         </select>
         <input {...register("findPasswordAnswer", { required: true })} />
-        {errors.findPasswordAnswer && <p>This field is required</p>}
+        {errors.findPasswordAnswer && <p>빈칸을 채워주세요</p>}
 
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
 
