@@ -28,8 +28,9 @@ const Wrapper = styled.div`
     border-bottom: 1px solid rgb(79, 98, 148);
   }
   h3 {
-    font-weight: 100;
-    color: #ec5990;
+    font-weight: 600;
+    background-color: ${({ theme }) => theme.palette.secondColor};
+    color: #fff;
     text-align: center;
   }
   form {
@@ -92,7 +93,7 @@ const Wrapper = styled.div`
   }
   button[type="submit"],
   input[type="submit"] {
-    background: #ec5990;
+    background: ${({ theme }) => theme.palette.personalDefault};
     color: black;
     text-transform: uppercase;
     border: none;
