@@ -35,6 +35,7 @@ const Label = styled.label`
   color: black;
   font-size: 14px;
   font-weight: 200;
+  width: 100%;
 `;
 
 export default ElInput;
