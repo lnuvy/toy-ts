@@ -1,5 +1,5 @@
 # main-deploy.yml
-name: Deploy to Production
+name: main-push
 
 on:
   push:
