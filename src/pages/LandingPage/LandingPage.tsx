@@ -15,7 +15,6 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const userInfo = useSelector((state: RootState) => state.user);
-
   console.log(userInfo);
 
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +29,6 @@ function LandingPage() {
       navigate("/login");
     } else {
       const a = getInit(isLogin);
-
       console.log("PersonalPage get요청 Init: ", a);
     }
   }, []);

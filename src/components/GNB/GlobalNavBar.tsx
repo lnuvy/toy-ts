@@ -16,7 +16,6 @@ const GlobalNavBar = () => {
 
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
-
     setIsOpen(checked);
 
     if (checked) {
@@ -69,10 +68,6 @@ const NavigationBarWarp = styled.header`
   z-index: 99;
   text-align: center;
   padding: 0 1rem;
-
-  & > span {
-    font-size: 2rem 600;
-  }
 `;
 
 const Title = styled.button`
