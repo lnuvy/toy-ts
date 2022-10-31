@@ -1,23 +1,23 @@
-# main-deploy-work.yml
-name: main
+# main-deploy.yml
+name: Deploy to Production
 
 on:
   push:
     branches:
-      - main # main 브랜치에서 push 이벤트가 일어났을 때 실행
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code
-        uses: actions/checkout@main
+        uses: actions/checkout@master
 
-      - name: Cache node modules # node modules 캐싱
+      - name: Cache node modules
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-main-build-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
