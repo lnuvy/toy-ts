@@ -30,8 +30,11 @@ const GlobalNavBar = () => {
   };
 
   const handleClickLogout = () => {
-    removeStorage();
-    navigate("/login");
+    const result = window.confirm("로그아웃 하시겠습니까?");
+    if (result) {
+      removeStorage();
+      navigate("/login");
+    } else return;
   };
 
   return (
@@ -46,7 +49,10 @@ const GlobalNavBar = () => {
         <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
-      <span onClick={handleClickLogout}>???님</span>
+      <UserDiv>
+        <span>???님</span>
+        <img src="/svg/logout.svg" alt="logout" onClick={handleClickLogout} />
+      </UserDiv>
     </NavigationBarWarp>
   );
 };
@@ -83,4 +89,18 @@ const Title = styled.button`
   margin: 0;
   color: #fff;
   cursor: pointer;
+`;
+
+const UserDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  & > img {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
 `;
