@@ -31,7 +31,7 @@ function LandingPage() {
       const a = getInit(isLogin);
       console.log("PersonalPage get요청 Init: ", a);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <AuthLayout>

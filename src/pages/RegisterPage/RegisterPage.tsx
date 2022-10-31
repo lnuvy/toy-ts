@@ -24,14 +24,14 @@ function RegisterPage() {
     if (isLogin) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const onSubmit = async (data: any) => {
     console.log(data.email);
     setLoading(true);
     axios.post("/join", data).then((res) => {
       console.log(res);
-      if (res.data.message == "회원가입 성공") {
+      if (res.data.message === "회원가입 성공") {
         navigate("/login");
       }
     });

@@ -25,7 +25,7 @@ function LoginPage() {
     if (isLogin) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const onSubmit = async (data: any) => {
     console.log(data);
