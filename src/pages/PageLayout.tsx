@@ -4,6 +4,7 @@ import React from "react";
 interface Props {
   children: React.ReactNode;
 }
+
 const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <Wrapper>

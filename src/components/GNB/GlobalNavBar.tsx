@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
+import { removeStorage } from "@utils/storage";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,7 +16,6 @@ const GlobalNavBar = () => {
 
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
-
     setIsOpen(checked);
 
     if (checked) {
@@ -27,6 +27,11 @@ const GlobalNavBar = () => {
         dispatch(toggleSidebar(checked));
       }, 300);
     }
+  };
+
+  const handleClickLogout = () => {
+    removeStorage();
+    navigate("/login");
   };
 
   return (
@@ -41,7 +46,7 @@ const GlobalNavBar = () => {
         <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
-      <span>???님</span>
+      <span onClick={handleClickLogout}>???님</span>
     </NavigationBarWarp>
   );
 };
@@ -63,10 +68,6 @@ const NavigationBarWarp = styled.header`
   z-index: 99;
   text-align: center;
   padding: 0 1rem;
-
-  & > span {
-    font-size: 2rem 600;
-  }
 `;
 
 const Title = styled.button`

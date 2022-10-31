@@ -6,10 +6,17 @@ import Card from "@components/Card/Card";
 import MainSearchBar from "@components/MainSearchBar";
 import AuthLayout from "@pages/AuthLayout";
 import { getStorage } from "@utils/storage";
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
+import { getInit } from "./api";
 
 function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userInfo = useSelector((state: RootState) => state.user);
+  console.log(userInfo);
+
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODOS: 검색 결과 axios 통신
@@ -20,6 +27,9 @@ function LandingPage() {
     const isLogin = getStorage();
     if (!isLogin) {
       navigate("/login");
+    } else {
+      const a = getInit(isLogin);
+      console.log("PersonalPage get요청 Init: ", a);
     }
   }, []);
 
