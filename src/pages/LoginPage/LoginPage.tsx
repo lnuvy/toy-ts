@@ -33,9 +33,13 @@ function LoginPage() {
     axios.post("/login", data).then((res) => {
       console.log(res);
       //sessionStorage에 userId란 키값으로 저장
-      setStorage(res.data.data);
+      if (res.data.data != null) {
+        setStorage(res.data.data);
+      }
       if (res.data.message === "로그인 성공") {
         navigate("/");
+      } else if (res.data.message === "로그인 실패") {
+        alert("입력을 다시 해주세요.");
       }
       dispatch(loginUser(true));
     });
@@ -50,7 +54,7 @@ function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
-        {errors.email && <p>This email field is required</p>}
+        {errors.email && <p>빈칸을 채워주세요</p>}
 
         <label>Password</label>
         <input

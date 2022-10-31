@@ -8,13 +8,13 @@ interface Props {
 const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <Wrapper>
-      <div className="content-tainer">{children}</div>
+      <div className="content-container">{children}</div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  & > .content-container {
+  .content-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   }
   h3 {
     font-weight: 100;
-    color: red;
+    color: #ec5990;
     text-align: center;
   }
   form {

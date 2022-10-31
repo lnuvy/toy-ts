@@ -18,7 +18,7 @@ function CheckPage() {
       .post("/find-password", data)
       .then((res) => {
         console.log(res);
-        //값이 온 경우 가져온 정보를 보여줘야된다.(ex. 비밀번호)
+        alert(res); //값이 온 경우 가져온 정보를 보여줘야된다.(ex. 비밀번호)
       })
       .catch((error) => {
         console.log("error", error);
@@ -33,7 +33,7 @@ function CheckPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
-        {errors.email && <p>This email field is required</p>}
+        {errors.email && <p>빈칸을 채워주세요</p>}
 
         <label>findPasswordAnswer</label>
         <select>
@@ -41,7 +41,7 @@ function CheckPage() {
           <option>좋아하는 색</option>
         </select>
         <input {...register("findPasswordAnswer", { required: true })} />
-        {errors.findPasswordAnswer && <p>This field is required</p>}
+        {errors.findPasswordAnswer && <p>빈칸을 채워주세요</p>}
 
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
         <input type="submit" />
