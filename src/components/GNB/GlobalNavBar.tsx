@@ -10,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
 
 import gravatar from "gravatar";
-
-import CommonModal from "@modal/CommonModal";
 import UserProfile from "@modal/UserProfile";
 import { useCallback } from "react";
 
@@ -68,7 +66,7 @@ const GlobalNavBar = () => {
         <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
-      <UserDiv onClick={onToggleUserModal}>
+      <UserDiv onClick={onToggleUserModal} isActive={openModal}>
         <ElProfileImage
           src={gravatar.url("gksdnf586@gmail.com", { s: "28px", d: "retro" })}
           size={28}
@@ -90,7 +88,7 @@ const GlobalNavBar = () => {
         <img src={gravatar.url("gksdnf586@gmail.com", { s: "36px", d: "retro" })} alt={"asdf"} />
         <div>
           <span id="profile-name">??? 님</span>
-          <span id="profile-active">Active</span>
+          <span id="profile-active">진행중인 프로젝트: ?개</span>
         </div>
       </UserProfile>
     </NavigationBarWarp>
@@ -130,15 +128,21 @@ const Title = styled.button`
   cursor: pointer;
 `;
 
-const UserDiv = styled.div`
+interface StyleProps {
+  isActive: boolean;
+}
+
+const UserDiv = styled.div<StyleProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
   height: 44px;
-  padding: 0 12px;
+  padding: 0 16px;
 
+  background-color: ${({ theme, isActive }) =>
+    isActive ? theme.palette.personalLight1 : theme.palette.personalDefault};
   &:hover {
     cursor: pointer;
     background-color: ${({ theme }) => theme.palette.personalLight1};

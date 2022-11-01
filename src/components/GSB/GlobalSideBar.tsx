@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { ChannelsWrap, MenuScroll, Title } from "./Styles";
 import { ProjectType } from "@typing/DB";
 import SidebarProjectCard from "@components/SidebarProjectCard/SidebarProjectCard";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 const recentUpdateDummy: ProjectType[] = [
   {
@@ -30,14 +32,28 @@ const recentUpdateDummy: ProjectType[] = [
 ];
 
 const GlobalSideBar = () => {
+  const navigate = useNavigate();
   const { closeAnimation } = useSelector((state: RootState) => state.layout);
+
+  const moveToProject = useCallback(
+    (id: number) => {
+      navigate(`/project/${id}`);
+    },
+    [navigate],
+  );
 
   return (
     <ChannelsWrap close={closeAnimation}>
       <Title>Recent Update</Title>
       <MenuScroll>
         {recentUpdateDummy.map((project) => {
-          return <SidebarProjectCard key={project.projectId} project={project} />;
+          return (
+            <SidebarProjectCard
+              key={project.projectId}
+              project={project}
+              onClick={() => moveToProject(project.projectId)}
+            />
+          );
         })}
       </MenuScroll>
     </ChannelsWrap>

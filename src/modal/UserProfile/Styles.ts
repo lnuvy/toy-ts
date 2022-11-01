@@ -35,18 +35,22 @@ export const CloseModalButton = styled.button`
 export const ProfileModal = styled.div`
   display: flex;
   padding: 20px;
+
   & img {
     display: flex;
   }
+
   & > div {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
   }
+
   & #profile-name {
-    font-weight: bold;
+    font-weight: 600;
     display: inline-flex;
   }
+
   & #profile-active {
     font-size: 13px;
     display: inline-flex;

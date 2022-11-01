@@ -6,6 +6,7 @@ import RegisterPage from "@pages/RegisterPage/RegisterPage";
 import CheckPage from "@pages/CheckPage/CheckPage";
 import LandingPage from "@pages/LandingPage/LandingPage";
 import SprintPage from "@pages/SprintPage/SprintPage";
+import ProjectDetail from "@pages/ProjectDetail/ProjectDetail";
 
 const App = () => {
   return (
@@ -16,8 +17,8 @@ const App = () => {
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/projectPage" element={<ProjectPage />} />
         <Route path="/checkPage" element={<CheckPage />} />
+        <Route path="/project/:projectId" element={<ProjectDetail />} />
         <Route path="/sprint/:projectId" element={<SprintPage />} />
-        {/* <Route path="/PersonalProject/:projectId" element={<PersonalProject />} /> */}
         {/* <Route path="/EditPage/:projectId" element={<EditPage />} /> */}
         {/* <Route path="/Sprint/:sprintId" element={<Sprint />} /> */}
 
