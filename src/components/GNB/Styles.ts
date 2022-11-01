@@ -4,7 +4,6 @@ type SidebarProps = {
   toggle: boolean;
 };
 
-/* background-color: ${({ theme }) => theme.palette.text1}; */
 export const BurgerIcon = styled.label<SidebarProps>`
   width: 30px;
   height: 20px;
@@ -20,7 +19,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
     position: absolute;
     left: 0;
     transition: 0.3s;
-    background-color: ${({ theme }) => theme.palette.gray1};
+    background-color: #fff;
 
     &:nth-of-type(1) {
       ${({ toggle }) => (toggle ? "top: 50%; transform: rotate(45deg);" : "top: 0;")};

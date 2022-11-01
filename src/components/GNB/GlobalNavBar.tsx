@@ -1,3 +1,4 @@
+import ElProfileImage from "@components/ElProfileImage";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
@@ -7,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
+
+import gravatar from "gravatar";
 
 const GlobalNavBar = () => {
   const dispatch = useDispatch();
@@ -50,13 +53,17 @@ const GlobalNavBar = () => {
       </div>
 
       <UserDiv>
+        <ElProfileImage
+          src={gravatar.url("gksdnf586@gmail.com", { s: "28px", d: "retro" })}
+          size={28}
+          onClick={() => console.log("gd")}
+        />
         <span>???님</span>
-        <img src="/svg/logout.svg" alt="logout" onClick={handleClickLogout} />
+        {/* <img src="/svg/logout.svg" alt="logout" onClick={handleClickLogout} /> */}
       </UserDiv>
     </NavigationBarWarp>
   );
 };
-
 export default GlobalNavBar;
 
 const NavigationBarWarp = styled.header`
@@ -73,7 +80,7 @@ const NavigationBarWarp = styled.header`
   // position: relative;
   z-index: 99;
   text-align: center;
-  padding: 0 1rem;
+  padding: 0 0 0 1rem;
 `;
 
 const Title = styled.button`
@@ -97,10 +104,11 @@ const UserDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  height: 44px;
+  padding: 0 10px;
 
-  & > img {
+  &:hover {
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    background-color: ${({ theme }) => theme.palette.personalLight1};
   }
 `;

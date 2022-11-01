@@ -1,7 +1,13 @@
-import React from "react";
+import ReactDOM from "react-dom";
 
-const Portal = () => {
-  return <div>Portal</div>;
+interface Props {
+  children: React.ReactNode;
+}
+
+const Portal: React.FC<Props> = ({ children }) => {
+  const el = document.getElementById("portal");
+
+  return ReactDOM.createPortal(children, el!);
 };
 
 export default Portal;
