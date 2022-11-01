@@ -1,4 +1,3 @@
-import AuthLayout from "@pages/AuthLayout";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -12,7 +11,7 @@ const ProjectDetail = () => {
     }
   }, [projectId]);
 
-  return <AuthLayout>Project Page {projectId}</AuthLayout>;
+  return <>Project Page {projectId}</>;
 };
 
 export default ProjectDetail;

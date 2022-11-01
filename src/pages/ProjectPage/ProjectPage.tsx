@@ -1,7 +1,6 @@
 import React from "react";
 import ElInput from "@components/ElInput";
 import ElButton from "@components/ElButton";
-import AuthLayout from "@pages/AuthLayout";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import styled from "@emotion/styled";
@@ -16,7 +15,7 @@ const ProjectPage = () => {
   };
 
   return (
-    <AuthLayout>
+    <>
       <LoginBox>
         <h3>Add Project</h3>
         <ElInput type="text" label="프로젝트명" />
@@ -26,7 +25,7 @@ const ProjectPage = () => {
 
       <br />
       <ElDropdown>드롭다운?</ElDropdown>
-    </AuthLayout>
+    </>
   );
 };
 

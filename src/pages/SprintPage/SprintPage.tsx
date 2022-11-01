@@ -1,4 +1,3 @@
-import AuthLayout from "@pages/AuthLayout";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSprintInit } from "./api";
@@ -16,7 +15,7 @@ const SprintPage = () => {
     }
   }, [projectId]);
 
-  return <AuthLayout>SprintPage {projectId}</AuthLayout>;
+  return <>SprintPage {projectId}</>;
 };
 
 export default SprintPage;
