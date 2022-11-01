@@ -11,15 +11,21 @@ import { BurgerIcon } from "./Styles";
 
 import gravatar from "gravatar";
 
+import CommonModal from "@modal/CommonModal";
+import UserProfile from "@modal/UserProfile";
+import { useCallback } from "react";
+
 const GlobalNavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { sidebar } = useSelector((state: RootState) => state.layout);
-  const [isOpen, setIsOpen] = useState(sidebar);
+  const [openSidebar, setOpenSidebar] = useState(sidebar);
+  const [openModal, setOpenModal] = useState(false);
 
+  // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
-    setIsOpen(checked);
+    setOpenSidebar(checked);
 
     if (checked) {
       dispatch(toggleSidebar(checked));
@@ -32,6 +38,10 @@ const GlobalNavBar = () => {
     }
   };
 
+  const onToggleUserModal = useCallback(() => {
+    setOpenModal((prev) => !prev);
+  }, []);
+
   const handleClickLogout = () => {
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result) {
@@ -43,8 +53,14 @@ const GlobalNavBar = () => {
   return (
     <NavigationBarWarp>
       <div style={{ display: "flex" }}>
-        <input type="checkbox" id="sidebar" style={{ display: "none" }} checked={isOpen} onChange={onChangeToggle} />
-        <BurgerIcon toggle={isOpen} htmlFor="sidebar">
+        <input
+          type="checkbox"
+          id="sidebar"
+          style={{ display: "none" }}
+          checked={openSidebar}
+          onChange={onChangeToggle}
+        />
+        <BurgerIcon toggle={openSidebar} htmlFor="sidebar">
           <span />
           <span />
           <span />
@@ -52,7 +68,7 @@ const GlobalNavBar = () => {
         <Title onClick={() => navigate("/")}>타이틀</Title>
       </div>
 
-      <UserDiv>
+      <UserDiv onClick={onToggleUserModal}>
         <ElProfileImage
           src={gravatar.url("gksdnf586@gmail.com", { s: "28px", d: "retro" })}
           size={28}
@@ -61,6 +77,22 @@ const GlobalNavBar = () => {
         <span>???님</span>
         {/* <img src="/svg/logout.svg" alt="logout" onClick={handleClickLogout} /> */}
       </UserDiv>
+
+      <UserProfile
+        show={openModal}
+        style={{ right: 0, top: 40 }}
+        onLogout={handleClickLogout}
+        onCloseModal={(e) => {
+          e.stopPropagation();
+          onToggleUserModal();
+        }}
+      >
+        <img src={gravatar.url("gksdnf586@gmail.com", { s: "36px", d: "retro" })} alt={"asdf"} />
+        <div>
+          <span id="profile-name">??? 님</span>
+          <span id="profile-active">Active</span>
+        </div>
+      </UserProfile>
     </NavigationBarWarp>
   );
 };
@@ -105,7 +137,7 @@ const UserDiv = styled.div`
   align-items: center;
   gap: 10px;
   height: 44px;
-  padding: 0 10px;
+  padding: 0 12px;
 
   &:hover {
     cursor: pointer;
