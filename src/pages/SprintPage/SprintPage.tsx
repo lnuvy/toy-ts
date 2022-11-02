@@ -4,14 +4,13 @@ import { getSprintInit } from "./api";
 
 const SprintPage = () => {
   const { projectId } = useParams();
-  // console.log(projectId);
+  console.log(projectId);
 
   useEffect(() => {
     if (projectId) {
       getSprintInit(projectId).then((res) => {
         console.log(res);
       });
-      // console.log("useEffect: ", a);
     }
   }, [projectId]);
 
