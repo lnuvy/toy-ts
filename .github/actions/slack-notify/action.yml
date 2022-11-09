@@ -1,0 +1,28 @@
+
+name: 'slack-notify'
+
+# job 의 성공 or 실패를 받을 status, 슬랙 수신 웹 후크 url 설정
+inputs:
+  status:
+    # Optional , 기본값 'failure'
+    required: false
+    default: 'failure'
+  slack_incoming_url:
+    required: true # Essential
+
+# using: 'composite' : 직접 Action 을 커스텀
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Send slack
+      # shell script
+      shell: bash
+      run: |
+        if [ "${{ inputs.status }}" = "success" ]; then
+          EMOTICON="✅"
+        else
+          EMOTICON="⛔"
+        fi
+        MSG="{ \"text\":\">${EMOTICON} 현재시점까지 작업물 머지하여 \`${GITHUB_REF#refs/heads/}\`에 push 해두었습니다.\n>해당브랜치에서부터 작업을 부탁드립니다. \`${{ github.actor }}\`\"}"
+        curl -X POST -H 'Content-type: application/json' --data "${MSG}" "${{ inputs.slack_incoming_url }}"
