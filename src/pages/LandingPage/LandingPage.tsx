@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { ProjectContainer } from "./Styles";
 import Card from "@components/Card/Card";
 import MainSearchBar from "@components/MainSearchBar";
-import AuthLayout from "@pages/AuthLayout";
 import { getStorage } from "@utils/storage";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
@@ -34,7 +33,7 @@ function LandingPage() {
   }, [navigate]);
 
   return (
-    <AuthLayout>
+    <>
       Project Search
       <form onSubmit={onSearch} style={{ display: "flex" }}>
         <MainSearchBar />
@@ -47,7 +46,7 @@ function LandingPage() {
         <Card />
       </ProjectContainer>
       <Link to="/projectPage">ADD Project</Link>
-    </AuthLayout>
+    </>
   );
 }
 

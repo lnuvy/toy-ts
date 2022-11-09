@@ -2,9 +2,14 @@ import React from "react";
 import { ProjectType } from "@typing/DB";
 import { Wrapper } from "./Styles";
 
-const SidebarProjectCard = ({ project }: { project: ProjectType }) => {
+interface Props {
+  onClick: () => void;
+  project: ProjectType;
+}
+
+const SidebarProjectCard: React.FC<Props> = ({ project, onClick }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <h3>{project.projectName}</h3>
 
       <p>{project.projectDetail}</p>

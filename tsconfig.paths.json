@@ -8,7 +8,8 @@
       "@redux/*": ["src/redux/*"],
       "@hooks/*": ["src/hooks/*"],
       "@constant/*": ["src/constant/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@modal/*": ["src/modal/*"]
     }
   }
 }

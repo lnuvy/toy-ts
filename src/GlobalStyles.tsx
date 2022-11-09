@@ -22,6 +22,16 @@ const GlobalStyles = () => {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
+
+    // 10/31 플렉스 속성 추가했습니당
+    .flex-row {
+      display: flex;
+    }
+
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+    }
   `;
 
   return <Global styles={styles} />;
