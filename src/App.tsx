@@ -17,7 +17,6 @@ const App = () => {
 
   useEffect(() => {
     const session = getStorage();
-
     if (session) setIsLogin(true);
     else setIsLogin(false);
   }, []);
@@ -38,7 +37,7 @@ const App = () => {
   else
     return (
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/*" element={<LoginPage />} />
         <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/checkPage" element={<CheckPage />} />
 
