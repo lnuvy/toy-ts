@@ -31,12 +31,13 @@ function LoginPage() {
     console.log(data);
     setLoading(true);
     axios.post("/login", data).then((res) => {
-      console.log(res);
-      //sessionStorage에 userId란 키값으로 저장
+      // sessionStorage에 userId란 키값으로 저장
       if (res.data.data != null) {
         setStorage(res.data.data.id);
-        setStorageName(res.data.data.name);
-        setStorageEmail(res.data.data.email);
+
+        console.log(res.data.data);
+
+        dispatch(loginUser(res.data.data));
       }
       if (res.data.message === "로그인 성공") {
         //navigate는 새로고침을 하지 않음
