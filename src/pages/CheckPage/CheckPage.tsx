@@ -27,10 +27,10 @@ function CheckPage() {
 
   return (
     <PageLayout>
-      <div style={{ textAlign: "center" }}>
-        <h3>회원정보 찾기</h3>
-      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div style={{ textAlign: "center" }}>
+          <h3>회원정보 찾기</h3>
+        </div>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
         {errors.email && <p>빈칸을 채워주세요</p>}

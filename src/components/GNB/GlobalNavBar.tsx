@@ -44,7 +44,8 @@ const GlobalNavBar = () => {
     const result = window.confirm("로그아웃 하시겠습니까?");
     if (result) {
       removeStorage();
-      navigate("/login");
+      window.location.href = "/";
+      //navigate("/");
     } else return;
   };
 
