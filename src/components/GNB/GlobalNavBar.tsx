@@ -2,7 +2,7 @@ import ElProfileImage from "@components/ElProfileImage";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
-import { removeStorage } from "@utils/storage";
+import { removeStorage, getStorageName } from "@utils/storage";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ const GlobalNavBar = () => {
   const { sidebar } = useSelector((state: RootState) => state.layout);
   const [openSidebar, setOpenSidebar] = useState(sidebar);
   const [openModal, setOpenModal] = useState(false);
+  const userName = getStorageName();
 
   // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +74,7 @@ const GlobalNavBar = () => {
           size={28}
           onClick={() => console.log("gd")}
         />
-        <span>???님</span>
+        <span>{userName}님</span>
         {/* <img src="/svg/logout.svg" alt="logout" onClick={handleClickLogout} /> */}
       </UserDiv>
 
@@ -88,7 +89,7 @@ const GlobalNavBar = () => {
       >
         <img src={gravatar.url("gksdnf586@gmail.com", { s: "36px", d: "retro" })} alt={"asdf"} />
         <div>
-          <span id="profile-name">??? 님</span>
+          <span id="profile-name">{userName}님</span>
           <span id="profile-active">진행중인 프로젝트: ?개</span>
         </div>
       </UserProfile>

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-import { setStorage, getStorage } from "@utils/storage";
+import { setStorage, getStorage, setStorageName } from "@utils/storage";
 import { useEffect } from "react";
 
 function LoginPage() {
@@ -35,6 +35,7 @@ function LoginPage() {
       //sessionStorage에 userId란 키값으로 저장
       if (res.data.data != null) {
         setStorage(res.data.data.id);
+        setStorageName(res.data.data.name);
       }
       if (res.data.message === "로그인 성공") {
         //navigate는 새로고침을 하지 않음

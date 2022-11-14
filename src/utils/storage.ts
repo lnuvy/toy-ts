@@ -18,3 +18,19 @@ export const removeStorage = () => {
   const session = window.sessionStorage;
   session.removeItem("userId");
 };
+
+export const getStorageName = () => {
+  const session = window.sessionStorage;
+  const userName = session.getItem("userName");
+
+  if (userName) {
+    return userName;
+  } else {
+    return false;
+  }
+};
+
+export const setStorageName = (name: string) => {
+  const session = window.sessionStorage;
+  session.setItem("userName", name);
+};
