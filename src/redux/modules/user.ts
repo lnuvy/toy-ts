@@ -1,27 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialUser = { userId: null, email: "", userName: "" };
+
 const initialState = {
-  currentUser: null,
-  isLoading: true,
-  isLogin: false,
+  currentUser: initialUser,
+  isLoading: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    registerUser: (state, action) => {
-      // 회원가입
-    },
-
     loginUser: (state, action) => {
-      // currentUser: action.payload.data.data,
       state.currentUser = action.payload;
       state.isLoading = false;
     },
 
     logoutUser: (state, action) => {
-      state.currentUser = null;
+      state.currentUser = initialUser;
       state.isLoading = false;
     },
   },
@@ -29,6 +25,6 @@ const userSlice = createSlice({
 
 const { reducer, actions } = userSlice;
 
-export const { registerUser, loginUser, logoutUser } = actions;
+export const { loginUser, logoutUser } = actions;
 
 export default reducer;

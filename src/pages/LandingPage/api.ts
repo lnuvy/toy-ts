@@ -4,6 +4,5 @@ export const getInit = async (userId: string) => {
   // const { data } = await axios.get(`/personalPage/${userId}`);
   // return data;
   const result = await axios.get(`/personalPage?id=${userId}`);
-  console.log(result);
-  return result.data;
+  return result.data.data;
 };

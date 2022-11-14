@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
 import { getStorage } from "@utils/storage";

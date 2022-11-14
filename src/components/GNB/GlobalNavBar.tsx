@@ -13,24 +13,38 @@ import gravatar from "gravatar";
 import UserProfile from "@modal/UserProfile";
 import { useCallback } from "react";
 import { getUser } from "./api";
+import { loginUser } from "@redux/modules/user";
 
 const GlobalNavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { sidebar } = useSelector((state: RootState) => state.layout);
+  const { email, userName, userId } = useSelector((state: RootState) => state.user.currentUser);
   const [openSidebar, setOpenSidebar] = useState(sidebar);
   const [openModal, setOpenModal] = useState(false);
-  const userName = getStorageName();
-  const userEmail = getStorageEmail();
 
+  const isLogin = getStorage();
   useEffect(() => {
-    const isLogin = getStorage();
     if (isLogin) {
-      const user = getUser(isLogin).then((res) => console.log(res));
-
-      console.log("GetUser: ", user);
+      getUserInfo();
     }
-  });
+    async function getUserInfo() {
+      if (isLogin) {
+        const { id, email, name } = await getUser(isLogin);
+
+        const userData = {
+          userId: id,
+          email: email,
+          userName: name,
+        };
+
+        dispatch(loginUser(userData));
+      }
+    }
+  }, [isLogin]);
+
+  console.log(email, userName, userId);
+
   // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
@@ -80,7 +94,7 @@ const GlobalNavBar = () => {
 
       <UserDiv onClick={onToggleUserModal} isActive={openModal}>
         <ElProfileImage
-          src={gravatar.url(`${userEmail}`, { s: "28px", d: "retro" })}
+          src={gravatar.url(`${email}`, { s: "28px", d: "retro" })}
           size={28}
           onClick={() => console.log("gd")}
         />
@@ -97,7 +111,7 @@ const GlobalNavBar = () => {
           onToggleUserModal();
         }}
       >
-        <img src={gravatar.url(`${userEmail}`, { s: "36px", d: "retro" })} alt={"asdf"} />
+        <img src={gravatar.url(`${email}`, { s: "36px", d: "retro" })} alt={"asdf"} />
         <div>
           <span id="profile-name">{userName}님</span>
           <span id="profile-active">진행중인 프로젝트: ?개</span>
