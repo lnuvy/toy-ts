@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   }
   h3 {
     font-weight: 600;
-    background-color: ${({ theme }) => theme.palette.secondColor};
+    background-color: ${({ theme }) => theme.palette.personalDark};
     color: #fff;
     text-align: center;
   }

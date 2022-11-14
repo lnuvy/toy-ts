@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-import { setStorage, getStorage } from "@utils/storage";
+import { setStorage, getStorage, setStorageName, setStorageEmail } from "@utils/storage";
 import { useEffect } from "react";
 
 function LoginPage() {
@@ -34,10 +34,13 @@ function LoginPage() {
       console.log(res);
       //sessionStorage에 userId란 키값으로 저장
       if (res.data.data != null) {
-        setStorage(res.data.data);
+        setStorage(res.data.data.id);
+        setStorageName(res.data.data.name);
+        setStorageEmail(res.data.data.email);
       }
       if (res.data.message === "로그인 성공") {
-        navigate("/");
+        //navigate는 새로고침을 하지 않음
+        window.location.href = "/";
       } else if (res.data.message === "로그인 실패") {
         alert("입력을 다시 해주세요.");
       }
@@ -48,10 +51,10 @@ function LoginPage() {
 
   return (
     <PageLayout>
-      <div>
-        <h3>테스트</h3>
-      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <h3>로그인</h3>
+        </div>
         <label>Email</label>
         <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
         {errors.email && <p>빈칸을 채워주세요</p>}
