@@ -2,16 +2,17 @@ import ElProfileImage from "@components/ElProfileImage";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
-import { removeStorage, getStorageName } from "@utils/storage";
-import React, { useState } from "react";
+import { removeStorage, getStorageName, getStorage, getStorageEmail } from "@utils/storage";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
 
 import gravatar from "gravatar";
 import UserProfile from "@modal/UserProfile";
 import { useCallback } from "react";
+import { getUser } from "./api";
 
 const GlobalNavBar = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,16 @@ const GlobalNavBar = () => {
   const [openSidebar, setOpenSidebar] = useState(sidebar);
   const [openModal, setOpenModal] = useState(false);
   const userName = getStorageName();
+  const userEmail = getStorageEmail();
 
+  useEffect(() => {
+    const isLogin = getStorage();
+    if (isLogin) {
+      const user = getUser(isLogin).then((res) => console.log(res));
+
+      console.log("GetUser: ", user);
+    }
+  });
   // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
@@ -70,7 +80,7 @@ const GlobalNavBar = () => {
 
       <UserDiv onClick={onToggleUserModal} isActive={openModal}>
         <ElProfileImage
-          src={gravatar.url("gksdnf586@gmail.com", { s: "28px", d: "retro" })}
+          src={gravatar.url(`${userEmail}`, { s: "28px", d: "retro" })}
           size={28}
           onClick={() => console.log("gd")}
         />
@@ -87,10 +97,13 @@ const GlobalNavBar = () => {
           onToggleUserModal();
         }}
       >
-        <img src={gravatar.url("gksdnf586@gmail.com", { s: "36px", d: "retro" })} alt={"asdf"} />
+        <img src={gravatar.url(`${userEmail}`, { s: "36px", d: "retro" })} alt={"asdf"} />
         <div>
           <span id="profile-name">{userName}님</span>
           <span id="profile-active">진행중인 프로젝트: ?개</span>
+          <Link to="edituser">
+            <button>프로필 수정</button>
+          </Link>
         </div>
       </UserProfile>
     </NavigationBarWarp>

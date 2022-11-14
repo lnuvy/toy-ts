@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/modules/user";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-import { setStorage, getStorage, setStorageName } from "@utils/storage";
+import { setStorage, getStorage, setStorageName, setStorageEmail } from "@utils/storage";
 import { useEffect } from "react";
 
 function LoginPage() {
@@ -36,6 +36,7 @@ function LoginPage() {
       if (res.data.data != null) {
         setStorage(res.data.data.id);
         setStorageName(res.data.data.name);
+        setStorageEmail(res.data.data.email);
       }
       if (res.data.message === "로그인 성공") {
         //navigate는 새로고침을 하지 않음

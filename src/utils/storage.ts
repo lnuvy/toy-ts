@@ -34,3 +34,19 @@ export const setStorageName = (name: string) => {
   const session = window.sessionStorage;
   session.setItem("userName", name);
 };
+
+export const getStorageEmail = () => {
+  const session = window.sessionStorage;
+  const userEmail = session.getItem("userEmail");
+
+  if (userEmail) {
+    return userEmail;
+  } else {
+    return false;
+  }
+};
+
+export const setStorageEmail = (Email: string) => {
+  const session = window.sessionStorage;
+  session.setItem("userEmail", Email);
+};

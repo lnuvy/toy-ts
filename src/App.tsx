@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { getStorage } from "@utils/storage";
 import { useState } from "react";
 import AuthLayout from "@pages/AuthLayout";
+import EditUserPage from "@pages/EditUserPage/EditUserPage";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/projectPage" element={<ProjectPage />} />
           <Route path="/project/:projectId" element={<ProjectDetail />} />
           <Route path="/sprint/:projectId" element={<SprintPage />} />
+          <Route path="/edituser" element={<EditUserPage />} />
           {/* <Route path="/EditPage/:projectId" element={<EditPage />} /> */}
           {/* <Route path="/Sprint/:sprintId" element={<Sprint />} /> */}
         </Routes>
