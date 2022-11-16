@@ -2,7 +2,7 @@ import ElProfileImage from "@components/ElProfileImage";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
-import { removeStorage, getStorageName, getStorage, getStorageEmail } from "@utils/storage";
+import { removeStorage, getStorage } from "@utils/storage";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -37,13 +37,10 @@ const GlobalNavBar = () => {
           email: email,
           userName: name,
         };
-
         dispatch(loginUser(userData));
       }
     }
   }, [isLogin]);
-
-  console.log(email, userName, userId);
 
   // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {

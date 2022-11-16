@@ -7,7 +7,6 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     if (projectId) {
-      // api
     }
   }, [projectId]);
 

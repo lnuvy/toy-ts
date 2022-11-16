@@ -7,13 +7,21 @@ import MainSearchBar from "@components/MainSearchBar";
 import { getStorage } from "@utils/storage";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
-import { getInit } from "./api";
+import { useGetProjects } from "./queries";
+
+interface Props {
+  memberList: string[];
+  projectDetail: string;
+  projectId: number;
+  projectLeader: number;
+  projectName: string;
+}
 
 function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userInfo = useSelector((state: RootState) => state.user);
+  const { currentUser } = useSelector((state: RootState) => state.user);
   const [project, setProject] = useState([]);
 
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,16 +29,9 @@ function LandingPage() {
     // TODOS: 검색 결과 axios 통신
   };
 
-  useEffect(() => {
-    // 로그인 돼있는 상태인지 확인
-    const isLogin = getStorage();
-    if (!isLogin) {
-      navigate("/login");
-    } else {
-      // const a = await getInit(userInfo.currentUser);
-      // setProject();
-    }
-  }, [navigate]);
+  const { data } = useGetProjects(currentUser.userId!);
+
+  console.log(data);
 
   return (
     <>
@@ -41,9 +42,9 @@ function LandingPage() {
         <button>검색</button>
       </form>
       <ProjectContainer>
-        <Card />
-        <Card />
-        <Card />
+        {project.map((p: Props) => {
+          return <Card key={p.projectId} project={p} />;
+        })}
       </ProjectContainer>
       <Link to="/projectPage">ADD Project</Link>
     </>
