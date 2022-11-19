@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ProjectContainer } from "./Styles";
+import { ProjectContainer, ButtonWrapper } from "./Styles";
 import MainSearchBar from "@components/MainSearchBar";
 import ProjectCarousel from "@components/project-common/ProjectCarousel";
 import ElFont from "@components/ElFont";
@@ -37,16 +37,18 @@ function LandingPage() {
       <ProjectContainer>
         <ProjectCarousel />
 
-        {!length && (
-          <ElButton
-            onClick={() => {
-              navigate("/projectPage");
-            }}
-          >
-            <ElFont size={16} color="white">
-              + 프로젝트 추가하기
-            </ElFont>
-          </ElButton>
+        {length && (
+          <ButtonWrapper>
+            <ElButton
+              onClick={() => {
+                navigate("/projectPage");
+              }}
+            >
+              <ElFont size={16} color="white">
+                + 프로젝트 추가하기
+              </ElFont>
+            </ElButton>
+          </ButtonWrapper>
         )}
       </ProjectContainer>
     </>

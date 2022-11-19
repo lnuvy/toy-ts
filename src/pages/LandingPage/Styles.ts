@@ -9,3 +9,9 @@ export const ProjectContainer = styled.div`
   column-gap: 20px;
   background-color: ${({ theme }) => theme.palette.gray5};
 `;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: end;
+`;

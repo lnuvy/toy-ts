@@ -21,19 +21,19 @@ const settings = {
   slidesToScroll: 1,
   arrows: true,
   centerPadding: "0",
-  appendDots: (dots: any) => (
-    <div
-      style={{
-        position: "absolute",
-        bottom: "-36px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <ul>{dots}</ul>
-    </div>
-  ),
+  // appendDots: (dots: any) => (
+  //   <div
+  //     style={{
+  //       position: "absolute",
+  //       bottom: "-36px",
+  //       display: "flex",
+  //       alignItems: "center",
+  //       justifyContent: "center",
+  //     }}
+  //   >
+  //     <ul>{dots}</ul>
+  //   </div>
+  // ),
 };
 
 interface Props {
