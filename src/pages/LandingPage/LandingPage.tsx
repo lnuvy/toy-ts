@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ProjectContainer } from "./Styles";
 import Card from "@components/Card/Card";
 import MainSearchBar from "@components/MainSearchBar";
-import { getStorage } from "@utils/storage";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import { useGetProjects } from "./queries";
+import ProjectCarousel from "@components/project-common/ProjectCarousel";
+import NoContent from "@components/project-common/NoContent";
+import Spinner from "@components/Spinner";
 
 interface Props {
   memberList: string[];
@@ -29,9 +31,9 @@ function LandingPage() {
     // TODOS: 검색 결과 axios 통신
   };
 
-  const { data } = useGetProjects(currentUser.userId!);
-
-  console.log(data);
+  const { data: projectList, isFetched } = useGetProjects(currentUser.userId!);
+  // const projectList: any = [];
+  console.log(projectList);
 
   return (
     <>
@@ -41,11 +43,7 @@ function LandingPage() {
         &nbsp;
         <button>검색</button>
       </form>
-      <ProjectContainer>
-        {project.map((p: Props) => {
-          return <Card key={p.projectId} project={p} />;
-        })}
-      </ProjectContainer>
+      <ProjectContainer>{isFetched ? <ProjectCarousel projectList={projectList} /> : <Spinner />}</ProjectContainer>
       <Link to="/projectPage">ADD Project</Link>
     </>
   );

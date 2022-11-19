@@ -16,12 +16,13 @@ import QueryString from "query-string";
  */
 const getProjects = (userId: string) => {
   const queryString = QueryString.stringify({ id: userId }, queryStringOptions);
-  return customAxios({ method: "get", url: `/personalPage?${queryString}` });
+  return customAxios({ method: "get", url: `/personalPage?${queryString}` })
+    .then(({ data }) => data.data)
+    .catch(console.log);
 };
 
 /**
- * server State 관리해주는 react-query (지금 엄청 핫한 라이브러리라 찾아보면 좋음~)
- *
+ * server State 관리해주는 react-query (지금 엄청 핫한 라이브러리라 찾아보면 좋음~
  * 참고) https://tanstack.com/query/v4/docs/overview
  */
 export const useGetProjects = (userId: string) => {

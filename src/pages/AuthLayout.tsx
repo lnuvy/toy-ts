@@ -17,7 +17,7 @@ const AuthLayout: React.FC<Props> = ({ children }) => {
       <GlobalNavBar />
       <div className="content-container">
         {sidebar && <GlobalSideBar />}
-        <Content>{children}</Content>
+        <Content isOpenSidebar={sidebar}>{children}</Content>
       </div>
     </Wrapper>
   );
@@ -37,8 +37,8 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-const Content = styled.div`
-  width: 100%;
+const Content = styled.div<{ isOpenSidebar: boolean }>`
+  width: ${({ isOpenSidebar }) => (isOpenSidebar ? "calc(100% - 260px);" : "calc(100%);")};
   padding: 1rem 2rem;
 `;
 
