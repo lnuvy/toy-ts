@@ -26,14 +26,16 @@ interface Props {
   children?: React.ReactNode | React.ReactNode[];
   className?: string;
   padding?: string;
+  margin?: string;
 }
 
 const FontStyle = styled.p<Props>`
-  margin: 0;
+  margin: ${({ margin }) => (margin ? margin : "0")};
   color: ${({ theme, color }) => (color ? theme.palette[color] : "#000")};
   font-size: ${({ size }) => (size ? `${size}px;` : `16px`)};
   vertical-align: center;
   padding: ${({ padding }) => (padding ? padding : "0")};
+  font-weight: ${({ weight }) => (weight ? weight : 400)};
   /* margin: 10px; */
 `;
 

@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
-
 import gravatar from "gravatar";
 import UserProfile from "@modal/UserProfile";
 import { useCallback } from "react";

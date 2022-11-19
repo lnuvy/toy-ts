@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const ProjectContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 50px;
   flex-wrap: wrap;
   padding: 30px;
   align-items: center;

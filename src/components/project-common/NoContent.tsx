@@ -25,12 +25,11 @@ const NoContent = () => {
 };
 
 const Wrapper = styled.div`
-  width: 90%;
-  margin: 0 auto;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-top: 100px;
 `;
 
 export default NoContent;

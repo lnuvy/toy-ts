@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import MainProjectCard from "./MainProjectCard";
 import { ProjectType } from "@typing/DB";
 import NoContent from "./NoContent";
+import { useSelector } from "react-redux";
+import { useGetProjects } from "@pages/LandingPage/queries";
+import { RootState } from "@redux/store";
+import Spinner from "@components/Spinner";
 
 const settings = {
   dots: true,
@@ -33,26 +37,38 @@ const settings = {
 };
 
 interface Props {
-  projectList: ProjectType[];
+  projectList?: ProjectType[];
 }
 
-const ProjectCarousel: React.FC<Props> = ({ projectList }) => {
+const ProjectCarousel: React.FC<Props> = () => {
+  const { currentUser } = useSelector((state: RootState) => state.user);
+  const { data: projectList, isFetched } = useGetProjects(currentUser.userId!);
+  // const projectList: any = [];
+
   // 등록된 프로젝트 없을때 유도하기
-  if (!projectList || projectList?.length === 0) return <NoContent />;
-  else
+  if (!isFetched)
     return (
       <Wrapper>
-        <StyledSlider {...settings}>
-          {projectList.map((project: ProjectType, i: number) => {
-            return <MainProjectCard key={project.projectId} project={project} />;
-          })}
-        </StyledSlider>
+        <Spinner />
       </Wrapper>
     );
+
+  if (projectList.length === 0) return <NoContent />;
+
+  return (
+    <Wrapper>
+      <StyledSlider {...settings}>
+        {projectList.map((project: ProjectType) => {
+          return <MainProjectCard key={project.projectId} project={project} />;
+        })}
+      </StyledSlider>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   width: 100%;
+  min-height: 500px;
 `;
 
 const StyledSlider = styled(Slider)`

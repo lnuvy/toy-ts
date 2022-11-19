@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-const Spinner = (props: any) => {
+interface Props {
+  color?: string;
+}
+
+const Spinner = (props: Props) => {
   const { color } = props;
 
   return (
