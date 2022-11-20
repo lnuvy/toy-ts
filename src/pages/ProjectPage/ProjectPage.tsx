@@ -33,8 +33,8 @@ const ProjectPage = () => {
         <ElButton onClick={handleClickAddProject}>추가하기</ElButton>
       </LoginBox>
 
-      <br />
-      <ElDropdown>드롭다운?</ElDropdown>
+      {/* <br /> */}
+      {/* <ElDropdown>드롭다운?</ElDropdown> */}
     </>
   );
 };

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { MemberType, ProjectType } from "@typing/DB";
 import ElFont from "@components/ElFont";
 import ElProfileImage from "@components/ElProfileImage";
 import gravatar from "gravatar";
+import { useDeleteProject } from "@pages/ProjectPage/queries";
 
 interface Props {
   project: ProjectType;
@@ -34,10 +35,20 @@ const test = {
 };
 
 const MainProjectCard: React.FC<Props> = ({ project }) => {
+  const { mutate: deleteProjectMutate } = useDeleteProject();
+
+  const onClickSetting = useCallback(() => {
+    const confirm = window.confirm("이 프로젝트를 삭제할까요?");
+
+    if (confirm) {
+      const { projectId } = project;
+      deleteProjectMutate({ projectId });
+    }
+  }, []);
   return (
     <Wrapper>
       <div className="icon-space">
-        <img src="/svg/setting.svg" alt="setting" />
+        <img src="/svg/setting.svg" alt="setting" onClick={onClickSetting} />
         &nbsp;
         <ElFont size={12} color="gray1">
           (생성일이나 최근업데이트날짜 보여야할듯)
@@ -79,6 +90,10 @@ const Wrapper = styled.div`
     justify-content: end;
     align-items: center;
     padding: 1rem;
+
+    & > img {
+      cursor: pointer;
+    }
   }
 
   .name-space {
