@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ElButton from "@components/ElButton";
-import ElFont from "@components/ElFont";
+import ElButton from "@components/el-button";
+import ElFont from "@components/el-font";
 import { useNavigate } from "react-router-dom";
 
 const NoContent = () => {
@@ -13,7 +13,7 @@ const NoContent = () => {
 
       <ElButton
         onClick={() => {
-          navigate("/projectPage");
+          navigate("/project");
         }}
       >
         <ElFont size={16} color="white">

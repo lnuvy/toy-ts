@@ -1,10 +1,10 @@
 import React from "react";
-import ElInput from "@components/ElInput";
-import ElButton from "@components/ElButton";
+import ElInput from "@components/el-input";
+import ElButton from "@components/el-button";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import styled from "@emotion/styled";
-import ElDropdown from "@components/ElDropdown";
+import ElDropdown from "@components/el-dropdown";
 import { useAddProjectMutation } from "./queries";
 import { useInputs } from "@hooks/useInput";
 

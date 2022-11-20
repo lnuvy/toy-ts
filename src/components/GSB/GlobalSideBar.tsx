@@ -3,7 +3,7 @@ import { RootState } from "@redux/store";
 import { useSelector } from "react-redux";
 import { ChannelsWrap, MenuScroll, Title } from "./Styles";
 import { ProjectType } from "@typing/DB";
-import SidebarProjectCard from "@components/SidebarProjectCard/SidebarProjectCard";
+import SidebarProjectCard from "@components/sidebar-project-card/SidebarProjectCard";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
