@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import QueryString from "query-string";
 
 interface ReqData {
-  userId: number;
+  userId: number | string;
   projectName: string;
   projectDetails: string;
 }

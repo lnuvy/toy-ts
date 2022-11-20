@@ -1,16 +1,18 @@
-import React, { useCallback } from "react";
+import React, { SyntheticEvent, useCallback } from "react";
 import styled from "@emotion/styled";
 import { MemberType, ProjectType } from "@typing/DB";
 import ElFont from "@components/ElFont";
 import ElProfileImage from "@components/ElProfileImage";
 import gravatar from "gravatar";
 import { useDeleteProject } from "@pages/ProjectPage/queries";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   project: ProjectType;
 }
 
 const MainProjectCard: React.FC<Props> = ({ project }) => {
+  const navigate = useNavigate();
   const { mutate: deleteProjectMutate } = useDeleteProject();
 
   const onClickSetting = useCallback(() => {
@@ -34,7 +36,15 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
         </ElFont>
       </div>
       <div className="name-space">
-        <ElFont size={20} weight={600}>
+        <ElFont
+          className="title"
+          size={20}
+          weight={600}
+          onClick={() => {
+            navigate(`/project/${project.projectId}`);
+            console.log("!!");
+          }}
+        >
           {project.projectName}
         </ElFont>
         <ElFont size={12} weight={400} margin="20px 0 0 0">
@@ -86,6 +96,15 @@ const Wrapper = styled.div`
     min-height: 250px;
     background-color: ${({ theme }) => theme.palette.personalLight2};
     border-radius: 9px 9px 0 0;
+
+    & > .title {
+      transition: transform 0.2s linear;
+      cursor: pointer;
+      &:hover {
+        color: ${({ theme }) => theme.palette.gray1};
+        transform: scale(1.05);
+      }
+    }
   }
 
   .member-space {

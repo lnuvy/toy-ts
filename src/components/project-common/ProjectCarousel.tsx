@@ -70,6 +70,8 @@ const ProjectCarousel: React.FC<Props> = () => {
 const Wrapper = styled.div`
   width: 100%;
   /* min-height: 500px; */
+  display: flex;
+  gap: 1rem;
 `;
 
 const StyledSlider = styled(Slider)`
