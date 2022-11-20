@@ -34,9 +34,6 @@ function LoginPage() {
       // sessionStorage에 userId란 키값으로 저장
       if (res.data.data != null) {
         setStorage(res.data.data.id);
-
-        console.log(res.data.data);
-
         dispatch(loginUser(res.data.data));
       }
       if (res.data.message === "로그인 성공") {

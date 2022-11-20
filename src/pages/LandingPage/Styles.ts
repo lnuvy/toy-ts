@@ -1,14 +1,17 @@
 import styled from "@emotion/styled";
 
 export const ProjectContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 50px;
   flex-wrap: wrap;
   padding: 30px;
-  /* width: 1000px; */
-
-  display: grid;
   align-items: center;
   justify-content: start;
-  grid-template-columns: repeat(3, 30%);
   column-gap: 20px;
+  background-color: ${({ theme }) => theme.palette.gray5};
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: end;
 `;

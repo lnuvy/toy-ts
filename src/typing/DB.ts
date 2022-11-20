@@ -3,7 +3,7 @@ export interface ProjectType {
   projectName: string;
   projectDetail: string;
   projectLeader: number;
-  memberList: string[];
+  memberList: any[];
 }
 
 export interface SprintType {
@@ -11,4 +11,10 @@ export interface SprintType {
   sprintName: string;
   sprintDetail: string;
   localDateTime: Date; // TODOS: type 다를 수 있음, response 모양 보고 변경하기
+}
+
+export interface MemberType {
+  email: string;
+  name: string;
+  userId: number;
 }

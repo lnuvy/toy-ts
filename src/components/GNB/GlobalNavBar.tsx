@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
-
 import gravatar from "gravatar";
 import UserProfile from "@modal/UserProfile";
 import { useCallback } from "react";
@@ -36,13 +35,10 @@ const GlobalNavBar = () => {
           email: email,
           userName: name,
         };
-
         dispatch(loginUser(userData));
       }
     }
   }, [isLogin]);
-
-  console.log(email, userName, userId);
 
   // 사이드바 토글 함수
   const onChangeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {

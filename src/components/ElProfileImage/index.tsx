@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import React from "react";
 
 interface Props {
-  size: number;
-  onClick: () => void;
+  size: 24 | 28 | 32 | 42;
+  onClick?: () => void;
   src: string;
 }
 
@@ -18,7 +18,6 @@ const ElProfileImage: React.FC<Props> = (props) => {
   const styles = {
     src,
     size,
-    // ...
   };
   return <ImageCircle onClick={onClick} {...styles} />;
 };

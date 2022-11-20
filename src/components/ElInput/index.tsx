@@ -2,15 +2,19 @@ import styled from "@emotion/styled";
 import React from "react";
 
 interface Props {
-  type: string;
   label: string;
+  value: string | number;
+  onChange: (e: any) => void;
+
+  name?: string;
+  type?: "text" | "number" | "password";
 }
 
-const ElInput: React.FC<Props> = ({ type, label }) => {
+const ElInput: React.FC<Props> = ({ type = "text", name, label, value, onChange }) => {
   return (
     <Label>
       {label}
-      <Input type={type} />
+      <Input name={name} type={type} value={value} onChange={onChange} />
     </Label>
   );
 };
