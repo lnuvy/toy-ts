@@ -9,9 +9,40 @@ interface Props {
   project: ProjectType;
 }
 
+const test = {
+  projectId: 1,
+  projectName: "프로젝트 이름",
+  projectDetail: "상세입니다",
+  projectLeader: 2,
+  memberList: [
+    {
+      userId: 2,
+      name: "한울",
+      email: "gksdnf586@naver.com",
+    },
+    {
+      userId: 3,
+      name: "나",
+      email: "fdasffdsa@gamil.com",
+    },
+    {
+      userId: 4,
+      name: "너",
+      email: "asdfasdf@naver.com",
+    },
+  ],
+};
+
 const MainProjectCard: React.FC<Props> = ({ project }) => {
   return (
     <Wrapper>
+      <div className="icon-space">
+        <img src="/svg/setting.svg" alt="setting" />
+        &nbsp;
+        <ElFont size={12} color="gray1">
+          (생성일이나 최근업데이트날짜 보여야할듯)
+        </ElFont>
+      </div>
       <div className="name-space">
         <ElFont size={20} weight={600}>
           {project.projectName}
@@ -22,15 +53,14 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
       </div>
 
       <div className="member-space">
-        <ImageBox>
-          {project?.memberList?.map((member: MemberType) => (
-            <ElProfileImage
-              key={member.userId}
-              size={28}
-              src={gravatar.url(`${member.email}`, { s: "28px", d: "retro" })}
-            />
+        <div>
+          {test?.memberList?.map((member: MemberType, i: number) => (
+            <ImageRelative key={member.userId} index={i}>
+              <ElProfileImage size={28} src={gravatar.url(`${member.email}`, { s: "28px", d: "retro" })} />
+            </ImageRelative>
           ))}
-        </ImageBox>
+        </div>
+        <div>안녕</div>
       </div>
     </Wrapper>
   );
@@ -39,24 +69,43 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
 export default MainProjectCard;
 
 const Wrapper = styled.div`
-  height: 500px;
+  max-height: 500px;
   padding: 2rem;
 
-  & > .name-space {
+  .icon-space {
+    width: inherit;
+    position: fixed;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .name-space {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 0 1rem;
+    min-height: 250px;
     background-color: ${({ theme }) => theme.palette.personalLight2};
-    height: 300px;
   }
 
-  & > .member-space {
+  .member-space {
     background-color: ${({ theme }) => theme.palette.gray4};
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      display: flex;
+      align-items: center;
+    }
   }
 `;
 
-const ImageBox = styled.div`
-  padding: 1rem;
+const ImageRelative = styled.div<{ index: number }>`
+  position: relative;
+  right: ${({ index }) => index * 12}px;
+  z-index: ${({ index }) => 100 - index};
 `;

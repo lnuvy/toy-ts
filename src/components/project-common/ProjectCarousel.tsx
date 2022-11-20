@@ -17,23 +17,24 @@ const settings = {
   speed: 500,
   autoplay: false,
   autoplaySpeed: 2000,
-  slidesToShow: 2,
-  slidesToScroll: 1,
   arrows: true,
+  slidesToShow: 5,
+  slidesToScroll: 1,
   centerPadding: "0",
-  // appendDots: (dots: any) => (
-  //   <div
-  //     style={{
-  //       position: "absolute",
-  //       bottom: "-36px",
-  //       display: "flex",
-  //       alignItems: "center",
-  //       justifyContent: "center",
-  //     }}
-  //   >
-  //     <ul>{dots}</ul>
-  //   </div>
-  // ),
+  responsive: [
+    {
+      breakpoint: 2048,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 1124,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 interface Props {
@@ -68,7 +69,7 @@ const ProjectCarousel: React.FC<Props> = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  min-height: 500px;
+  /* min-height: 500px; */
 `;
 
 const StyledSlider = styled(Slider)`

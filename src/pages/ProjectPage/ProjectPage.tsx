@@ -5,21 +5,31 @@ import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import styled from "@emotion/styled";
 import ElDropdown from "@components/ElDropdown";
+import { useAddProjectMutation } from "./queries";
+import { useInputs } from "@hooks/useInput";
 
 const ProjectPage = () => {
-  const userInfo = useSelector((state: RootState) => state.user);
-  console.log(userInfo);
+  const { currentUser } = useSelector((state: RootState) => state.user);
+
+  const [project, onChangeInputs] = useInputs({ title: "", details: "" });
+
+  const { mutate: addProjectMutate } = useAddProjectMutation();
 
   const handleClickAddProject = () => {
-    console.log("add");
+    const data = {
+      userId: currentUser.userId!,
+      projectName: project.title,
+      projectDetails: project.details,
+    };
+    addProjectMutate(data);
   };
 
   return (
     <>
       <LoginBox>
         <h3>Add Project</h3>
-        <ElInput type="text" label="프로젝트명" />
-        <ElInput type="text" label="프로젝트 상세" />
+        <ElInput name="title" value={project.title} onChange={onChangeInputs} label="프로젝트명" />
+        <ElInput name="details" value={project.details} onChange={onChangeInputs} label="프로젝트 상세" />
         <ElButton onClick={handleClickAddProject}>추가하기</ElButton>
       </LoginBox>
 

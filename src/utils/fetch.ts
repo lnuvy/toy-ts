@@ -20,7 +20,7 @@ customAxios.interceptors.response.use(
 
     if (error.response) {
       console.log("error!!!");
-      console.log(error);
+      console.error(error);
     }
     return Promise.reject(error);
   },

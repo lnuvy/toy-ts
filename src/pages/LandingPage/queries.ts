@@ -18,7 +18,7 @@ const getProjects = (userId: string) => {
   const queryString = QueryString.stringify({ id: userId }, queryStringOptions);
   return customAxios({ method: "get", url: `/personalPage?${queryString}` })
     .then(({ data }) => data.data)
-    .catch(console.log);
+    .catch(console.error);
 };
 
 /**
