@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { MemberType, ProjectType } from "@typing/DB";
-import ElFont from "@components/ElFont";
-import ElProfileImage from "@components/ElProfileImage";
+import ElFont from "@components/el-font";
+import ElProfileImage from "@components/el-profile-image";
 import gravatar from "gravatar";
-import { useDeleteProject } from "@pages/ProjectPage/queries";
+import { useDeleteProject } from "@pages/project-page/queries";
 
 interface Props {
   project: ProjectType;
