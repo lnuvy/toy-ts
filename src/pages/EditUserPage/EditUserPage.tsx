@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { RootState } from "@redux/store";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-import { getStorageName, getStorage, getStorageEmail } from "@utils/storage";
 
 function EditUserPage() {
   const {
@@ -13,9 +14,7 @@ function EditUserPage() {
   } = useForm();
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
-  const userId = getStorage();
-  const userName = getStorageName();
-  const userEmail = getStorageEmail();
+  const { email, userName, userId } = useSelector((state: RootState) => state.user.currentUser);
 
   const onSubmit = async (data: any) => {
     setLoading(true);
@@ -36,27 +35,11 @@ function EditUserPage() {
         <div style={{ textAlign: "center" }}>
           <h3>프로필 수정하기</h3>
         </div>
-        <label>Email</label>
-        <input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
-        {errors.email && <p>빈칸을 채워주세요</p>}
 
         <label>Name</label>
-        <input {...register("name", { required: true, maxLength: 10 })} />
+        <input value={userName} {...register("name", { required: true, maxLength: 10 })} />
         {errors.name && errors.name.type === "required" && <p>빈칸을 채워주세요</p>}
         {errors.name && errors.name.type === "maxLength" && <p>최대 10글자</p>}
-
-        <label>Password</label>
-        <input
-          type="password"
-          {...register("password", {
-            required: true,
-            pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/,
-          })}
-        />
-        {errors.password && errors.password.type === "required" && <p>빈칸을 채워주세요</p>}
-        {errors.password && errors.password.type === "pattern" && (
-          <p>최소 8자에서 최대 16자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자 사용</p>
-        )}
 
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
         <input type="submit" />

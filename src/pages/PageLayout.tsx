@@ -16,18 +16,25 @@ const PageLayout: React.FC<Props> = ({ children }) => {
 const Wrapper = styled.div`
   .content-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 100vh;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .Box {
+    max-width: 500px;
+    max-height: 700px;
+    border: 1px solid ${({ theme }) => theme.palette.personalDark};
+    border-radius: 10px;
+    padding: 20px 30px;
   }
   h1 {
-    font-weight: 100;
-    color: white;
-    text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgb(79, 98, 148);
+    font-size: 50px;
+    color: ${({ theme }) => theme.palette.personalDark};
+    text-align: left;
   }
   h3 {
+    border-radius: 10px;
     font-weight: 600;
     background-color: ${({ theme }) => theme.palette.personalDark};
     color: #fff;
@@ -103,9 +110,15 @@ const Wrapper = styled.div`
     font-weight: 100;
     letter-spacing: 10px;
   }
-  button[type="submit"]:hover,
-  input[type="submit"] :hover {
-    background: #bf1650;
+  .userId {
+    display: flex;
+  }
+  .password {
+    display: flex;
+  }
+  img {
+    margin-right: 10px;
+    padding-bottom: 10px;
   }
 `;
 

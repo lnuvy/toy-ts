@@ -2,10 +2,9 @@ import ElProfileImage from "@components/ElProfileImage";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
-import { removeStorage, getStorageName, getStorage, getStorageEmail } from "@utils/storage";
+import { removeStorage, getStorage } from "@utils/storage";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
 
@@ -74,6 +73,11 @@ const GlobalNavBar = () => {
     } else return;
   };
 
+  const handleClickEdit = () => {
+    navigate("/edituser");
+    onToggleUserModal();
+  };
+
   return (
     <NavigationBarWarp>
       <div style={{ display: "flex" }}>
@@ -105,6 +109,7 @@ const GlobalNavBar = () => {
       <UserProfile
         show={openModal}
         style={{ right: 0, top: 40 }}
+        onEdit={handleClickEdit}
         onLogout={handleClickLogout}
         onCloseModal={(e) => {
           e.stopPropagation();
@@ -115,9 +120,6 @@ const GlobalNavBar = () => {
         <div>
           <span id="profile-name">{userName}님</span>
           <span id="profile-active">진행중인 프로젝트: ?개</span>
-          <Link to="edituser">
-            <button>프로필 수정</button>
-          </Link>
         </div>
       </UserProfile>
     </NavigationBarWarp>
