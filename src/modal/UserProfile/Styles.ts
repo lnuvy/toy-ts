@@ -21,6 +21,9 @@ export const Menu = styled.div`
     color: rgb(29, 28, 29);
   }
 `;
+export const TwoButton = styled.div`
+  display: flex;
+`;
 
 export const CloseModalButton = styled.button`
   position: absolute;
@@ -56,10 +59,30 @@ export const ProfileModal = styled.div`
     display: inline-flex;
   }
 `;
+export const EditButton = styled.button`
+  border: none;
+  width: 100%;
+  border-top: 1px solid rgb(29, 28, 29);
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 5px 20px 5px;
+  outline: none;
+  cursor: pointer;
+
+  & > img {
+    width: 24px;
+    height: 24px;
+  }
+`;
 
 export const LogOutButton = styled.button`
   border: none;
   width: 100%;
+  border-left: 1px solid rgb(29, 28, 29);
   border-top: 1px solid rgb(29, 28, 29);
   background: transparent;
   display: flex;
