@@ -1,40 +1,18 @@
-import React, { useCallback } from "react";
+import React, { SyntheticEvent, useCallback } from "react";
 import styled from "@emotion/styled";
 import { MemberType, ProjectType } from "@typing/DB";
 import ElFont from "@components/el-font";
 import ElProfileImage from "@components/el-profile-image";
 import gravatar from "gravatar";
 import { useDeleteProject } from "@pages/project-page/queries";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   project: ProjectType;
 }
 
-const test = {
-  projectId: 1,
-  projectName: "프로젝트 이름",
-  projectDetail: "상세입니다",
-  projectLeader: 2,
-  memberList: [
-    {
-      userId: 2,
-      name: "한울",
-      email: "gksdnf586@naver.com",
-    },
-    {
-      userId: 3,
-      name: "나",
-      email: "fdasffdsa@gamil.com",
-    },
-    {
-      userId: 4,
-      name: "너",
-      email: "asdfasdf@naver.com",
-    },
-  ],
-};
-
 const MainProjectCard: React.FC<Props> = ({ project }) => {
+  const navigate = useNavigate();
   const { mutate: deleteProjectMutate } = useDeleteProject();
 
   const onClickSetting = useCallback(() => {
@@ -45,6 +23,9 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
       deleteProjectMutate({ projectId });
     }
   }, []);
+
+  const { length } = project.memberList;
+
   return (
     <Wrapper>
       <div className="icon-space">
@@ -55,7 +36,15 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
         </ElFont>
       </div>
       <div className="name-space">
-        <ElFont size={20} weight={600}>
+        <ElFont
+          className="title"
+          size={20}
+          weight={600}
+          onClick={() => {
+            navigate(`/project/${project.projectId}`);
+            console.log("!!");
+          }}
+        >
           {project.projectName}
         </ElFont>
         <ElFont size={12} weight={400} margin="20px 0 0 0">
@@ -65,13 +54,15 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
 
       <div className="member-space">
         <div>
-          {test?.memberList?.map((member: MemberType, i: number) => (
+          {project?.memberList?.map((member: MemberType, i: number) => (
             <ImageRelative key={member.userId} index={i}>
               <ElProfileImage size={28} src={gravatar.url(`${member.email}`, { s: "28px", d: "retro" })} />
             </ImageRelative>
           ))}
         </div>
-        <div>안녕</div>
+        <div>
+          {project.memberList.find((v: MemberType) => project.projectLeader === v.userId).name} 외 {length - 1}명
+        </div>
       </div>
     </Wrapper>
   );
@@ -104,6 +95,16 @@ const Wrapper = styled.div`
     padding: 0 1rem;
     min-height: 250px;
     background-color: ${({ theme }) => theme.palette.personalLight2};
+    border-radius: 9px 9px 0 0;
+
+    & > .title {
+      transition: transform 0.2s linear;
+      cursor: pointer;
+      &:hover {
+        color: ${({ theme }) => theme.palette.gray1};
+        transform: scale(1.05);
+      }
+    }
   }
 
   .member-space {
@@ -111,6 +112,7 @@ const Wrapper = styled.div`
     padding: 1rem;
     display: flex;
     justify-content: space-between;
+    border-radius: 0 0 9px 9px;
 
     & > div {
       display: flex;

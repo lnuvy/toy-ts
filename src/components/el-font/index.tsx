@@ -1,6 +1,6 @@
 import { ClassNames } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 
 interface Props {
   size?: 32 | 28 | 24 | 20 | 18 | 16 | 15 | 14 | 13 | 12 | 11 | 10;
@@ -27,6 +27,8 @@ interface Props {
   className?: string;
   padding?: string;
   margin?: string;
+
+  onClick?: (e: SyntheticEvent) => void;
 }
 
 const FontStyle = styled.p<Props>`

@@ -1,12 +1,11 @@
-import React from "react";
 import ElInput from "@components/el-input";
 import ElButton from "@components/el-button";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import styled from "@emotion/styled";
-import ElDropdown from "@components/el-dropdown";
 import { useAddProjectMutation } from "./queries";
 import { useInputs } from "@hooks/useInput";
+import ElDropdown from "@components/el-dropdown";
 
 const ProjectPage = () => {
   const { currentUser } = useSelector((state: RootState) => state.user);
