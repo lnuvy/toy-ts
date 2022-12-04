@@ -5,7 +5,9 @@ import { RootState } from "@redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-
+import gravatar from "gravatar";
+import { ImageWrapper } from "./Styles";
+import { useName } from "./queries";
 function EditUserPage() {
   const {
     register,
@@ -16,9 +18,13 @@ function EditUserPage() {
   const [loading, setLoading] = useState(false);
   const { email, userName, userId } = useSelector((state: RootState) => state.user.currentUser);
 
+  const { mutate: updateusername } = useName();
+
   const onSubmit = async (data: any) => {
     setLoading(true);
-    axios
+    updateusername(data);
+    {
+      /*axios
       .post("/find-password", data)
       .then((res) => {
         console.log(res);
@@ -27,6 +33,9 @@ function EditUserPage() {
       .catch((error) => {
         console.log("error", error);
       });
+      */
+    }
+    setLoading(false);
   };
 
   return (
@@ -35,6 +44,9 @@ function EditUserPage() {
         <div style={{ textAlign: "center" }}>
           <h3>프로필 수정하기</h3>
         </div>
+        <ImageWrapper>
+          <img src={gravatar.url(`${email}`, { s: "220px", d: "retro" })}></img>
+        </ImageWrapper>
 
         <label>Name</label>
         <input value={userName} {...register("name", { required: true, maxLength: 10 })} />

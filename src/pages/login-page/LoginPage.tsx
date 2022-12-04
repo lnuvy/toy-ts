@@ -7,6 +7,7 @@ import axios from "axios";
 import PageLayout from "@pages/PageLayout";
 import { setStorage, getStorage } from "@utils/storage";
 import { useEffect } from "react";
+import { useLogin } from "./queries";
 
 function LoginPage() {
   const {
@@ -19,18 +20,22 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { mutate: loginMutate } = useLogin();
+
   useEffect(() => {
     const isLogin = getStorage();
-
     if (isLogin) {
       navigate("/");
     }
   }, [navigate]);
-
   const onSubmit = async (data: any) => {
     console.log(data);
     setLoading(true);
-    axios.post("/login", data).then((res) => {
+    loginMutate(data);
+    {
+      /*
+
+      axios.post("/login", data).then((res) => {
       // sessionStorage에 userId란 키값으로 저장
       if (res.data.data != null) {
         setStorage(res.data.data.id);
@@ -44,6 +49,9 @@ function LoginPage() {
       }
       dispatch(loginUser(true));
     });
+      */
+    }
+
     setLoading(false);
   };
 
