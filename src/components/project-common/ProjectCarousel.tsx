@@ -47,12 +47,12 @@ const ProjectCarousel: React.FC<Props> = () => {
   // const projectList: any = [];
 
   // 등록된 프로젝트 없을때 유도하기
-  if (!isFetched)
-    return (
-      <Wrapper>
-        <Spinner />
-      </Wrapper>
-    );
+  // if (!isFetched)
+  //   return (
+  //     <Wrapper>
+  //       <Spinner />
+  //     </Wrapper>
+  //   );
 
   if (!projectList) return <NoContent />;
 

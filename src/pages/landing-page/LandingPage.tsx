@@ -8,7 +8,8 @@ import ElFont from "@components/el-font";
 import ElButton from "@components/el-button";
 import { useGetProjects } from "./queries";
 import { RootState } from "@redux/store";
-import project from "@redux/modules/project";
+import { project } from "@redux/modules/project";
+
 function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,10 +18,11 @@ function LandingPage() {
   const { data: projectList } = useGetProjects(currentUser.userId!);
 
   const length = projectList?.length;
+
   useEffect(() => {
-    // error
-    // dispatch(project(projectList));
+    dispatch(project(projectList));
   }, []);
+
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODOS: 검색 결과 axios 통신
