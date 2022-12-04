@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useGetRedux } from "@hooks/useGetRedux";
 import { Wrapper } from "./Styles";
 import { useGetSprints } from "./queries";
-import ElFont from "@components/ElFont";
-import { useGetProjects } from "@pages/LandingPage/queries";
+import ElFont from "@components/el-font";
+import { useGetProjects } from "@pages/landing-page/queries";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 

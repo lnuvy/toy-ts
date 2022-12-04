@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Wrap } from "./Styles";
+
 interface Props {
   project: {
     memberList: string[];
