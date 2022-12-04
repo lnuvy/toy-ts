@@ -5,6 +5,7 @@ import ElFont from "@components/el-font";
 import ElProfileImage from "@components/el-profile-image";
 import gravatar from "gravatar";
 import { useDeleteProject } from "@pages/project-page/queries";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   project: ProjectType;
@@ -36,6 +37,7 @@ const test = {
 
 const MainProjectCard: React.FC<Props> = ({ project }) => {
   const { mutate: deleteProjectMutate } = useDeleteProject();
+  const navigate = useNavigate();
 
   const onClickSetting = useCallback(() => {
     const confirm = window.confirm("이 프로젝트를 삭제할까요?");
@@ -45,15 +47,21 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
       deleteProjectMutate({ projectId });
     }
   }, []);
+
+  const onClickProject = () => {
+    navigate(`/project/${project.projectId}`);
+  };
   return (
-    <Wrapper>
+    <Wrapper onClick={onClickProject}>
       <div className="icon-space">
-        <img src="/svg/setting.svg" alt="setting" onClick={onClickSetting} />
+        <img src="/svg/setting.svg" alt="setting" />
         &nbsp;
         <ElFont size={12} color="gray1">
           (생성일이나 최근업데이트날짜 보여야할듯)
         </ElFont>
+        <img src="/svg/waste.svg" alt="waste" onClick={onClickSetting} />
       </div>
+
       <div className="name-space">
         <ElFont size={20} weight={600}>
           {project.projectName}
@@ -87,7 +95,7 @@ const Wrapper = styled.div`
     width: inherit;
     position: fixed;
     display: flex;
-    justify-content: end;
+    flex-direction: row;
     align-items: center;
     padding: 1rem;
 
@@ -95,7 +103,6 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
   }
-
   .name-space {
     display: flex;
     flex-direction: column;

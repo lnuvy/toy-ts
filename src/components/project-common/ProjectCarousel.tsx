@@ -54,7 +54,7 @@ const ProjectCarousel: React.FC<Props> = () => {
       </Wrapper>
     );
 
-  if (projectList.length === 0) return <NoContent />;
+  if (!projectList) return <NoContent />;
 
   return (
     <Wrapper>
