@@ -8,7 +8,6 @@ import App from "./App";
 import GlobalStyles from "./GlobalStyles";
 import { store } from "./redux/store";
 import { theme } from "./theme";
-
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const queryClient = new QueryClient({

@@ -14,7 +14,13 @@ interface ReqData {
  */
 const getSprints = (projectId: string) => {
   const queryString = QueryString.stringify({ projectId }, queryStringOptions);
-  return customAxios({ method: "get", url: `/personalProject?${queryString}` })
+  return customAxios({ method: "get", url: `/personalProject?${queryString}` });
+};
+
+//프로젝트 정보 하나 가져오기
+const getOneProject = (projectId: string) => {
+  const queryString = QueryString.stringify({ projectId: projectId }, queryStringOptions);
+  return customAxios({ method: "get", url: `/personalProject/getOne?${queryString}` })
     .then(({ data }) => data.data)
     .catch(console.error);
 };
@@ -44,5 +50,10 @@ export const useAddSprintMutation = () => {
       const { response } = error;
       console.error(response);
     },
+  });
+};
+export const useGetOneProject = (projectId: string) => {
+  return useQuery(["GetOne", { projectId }], () => getOneProject(projectId), {
+    enabled: !!projectId,
   });
 };

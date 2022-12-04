@@ -26,15 +26,20 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
 
   const { length } = project.memberList;
 
+  const onClickProject = () => {
+    navigate(`/project/${project.projectId}`);
+  };
   return (
-    <Wrapper>
+    <Wrapper onClick={onClickProject}>
       <div className="icon-space">
-        <img src="/svg/setting.svg" alt="setting" onClick={onClickSetting} />
+        <img src="/svg/setting.svg" alt="setting" />
         &nbsp;
         <ElFont size={12} color="gray1">
           (생성일이나 최근업데이트날짜 보여야할듯)
         </ElFont>
+        <img src="/svg/waste.svg" alt="waste" onClick={onClickSetting} />
       </div>
+
       <div className="name-space">
         <ElFont
           className="title"
@@ -78,7 +83,7 @@ const Wrapper = styled.div`
     width: inherit;
     position: fixed;
     display: flex;
-    justify-content: end;
+    flex-direction: row;
     align-items: center;
     padding: 1rem;
 
@@ -86,7 +91,6 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
   }
-
   .name-space {
     display: flex;
     flex-direction: column;
