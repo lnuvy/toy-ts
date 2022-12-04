@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
 import { getStorage } from "@utils/storage";
+import { useRegister } from "./queries";
 
 function RegisterPage() {
   const {
@@ -16,6 +17,7 @@ function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { mutate: registerMutate } = useRegister();
 
   useEffect(() => {
     const isLogin = getStorage();
@@ -28,12 +30,19 @@ function RegisterPage() {
   const onSubmit = async (data: any) => {
     console.log(data.email);
     setLoading(true);
-    axios.post("/join", data).then((res) => {
+    registerMutate(data);
+    {
+      /*
+      axios.post("/join", data).then((res) => {
       console.log(res);
       if (res.data.message === "회원가입 성공") {
         navigate("/login");
       }
     });
+      */
+    }
+
+    setLoading(false);
   };
   return (
     <PageLayout>

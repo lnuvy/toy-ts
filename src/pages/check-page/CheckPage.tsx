@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import PageLayout from "@pages/PageLayout";
 import { getPassword } from "./api";
-
+import { usePassword } from "./queries";
 function CheckPage() {
   const {
     register,
@@ -12,9 +12,11 @@ function CheckPage() {
   } = useForm();
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
+  const { mutate: getuserpassword } = usePassword();
   const onSubmit = async (data: any) => {
     setLoading(true);
-    getPassword(data);
+    getuserpassword(data);
+    //getPassword(data);
     setLoading(false);
   };
 
