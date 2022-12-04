@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ProjectContainer, ButtonWrapper } from "./Styles";
-import MainSearchBar from "@components/MainSearchBar";
+import MainSearchBar from "@components/main-searchbar";
 import ProjectCarousel from "@components/project-common/ProjectCarousel";
-import ElFont from "@components/ElFont";
-import ElButton from "@components/ElButton";
+import ElFont from "@components/el-font";
+import ElButton from "@components/el-button";
 import { useGetProjects } from "./queries";
 import { RootState } from "@redux/store";
 
@@ -41,7 +41,7 @@ function LandingPage() {
           <ButtonWrapper>
             <ElButton
               onClick={() => {
-                navigate("/projectPage");
+                navigate("/project");
               }}
             >
               <ElFont size={16} color="white">

@@ -86,10 +86,10 @@ function LoginPage() {
 
           {errorFromSubmit && <p>{errorFromSubmit}</p>}
           <input type="submit" disabled={loading} value="로그인" />
-          <Link style={{ color: "gray", textDecoration: "none" }} to="/registerPage">
+          <Link style={{ color: "gray", textDecoration: "none" }} to="/register">
             회원가입하기
           </Link>
-          <Link style={{ color: "gray", textDecoration: "none", float: "right" }} to="/checkPage">
+          <Link style={{ color: "gray", textDecoration: "none", float: "right" }} to="/check">
             비밀번호 찾기
           </Link>
         </form>

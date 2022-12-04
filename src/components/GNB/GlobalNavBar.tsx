@@ -1,4 +1,4 @@
-import ElProfileImage from "@components/ElProfileImage";
+import ElProfileImage from "@components/el-profile-image";
 import styled from "@emotion/styled";
 import { closeSidebar, toggleSidebar } from "@redux/modules/layout";
 import { RootState } from "@redux/store";
@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BurgerIcon } from "./Styles";
 import gravatar from "gravatar";
-import UserProfile from "@modal/UserProfile";
+import UserProfile from "@modal/user-profile";
 import { useCallback } from "react";
 import { getUser } from "./api";
 import { loginUser } from "@redux/modules/user";

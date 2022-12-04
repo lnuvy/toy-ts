@@ -1,5 +1,5 @@
-import GlobalNavBar from "@components/GNB/GlobalNavBar";
-import GlobalSideBar from "@components/GSB/GlobalSideBar";
+import GlobalNavBar from "@components/gnb/GlobalNavBar";
+import GlobalSideBar from "@components/gsb/GlobalSideBar";
 import styled from "@emotion/styled";
 import { RootState } from "@redux/store";
 import React from "react";

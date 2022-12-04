@@ -7,9 +7,9 @@ import MainProjectCard from "./MainProjectCard";
 import { ProjectType } from "@typing/DB";
 import NoContent from "./NoContent";
 import { useSelector } from "react-redux";
-import { useGetProjects } from "@pages/LandingPage/queries";
+import { useGetProjects } from "@pages/landing-page/queries";
 import { RootState } from "@redux/store";
-import Spinner from "@components/Spinner";
+import Spinner from "@components/spinner";
 
 const settings = {
   dots: true,
