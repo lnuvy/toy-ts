@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
+export const ProjectDetailBox = styled.div`
+  font-family: "LINESeedKR-Bd";
+`;
+export const ProjectContainer = styled.div`
   margin-top: 50px;
   flex-wrap: wrap;
   padding: 30px;
@@ -8,5 +11,4 @@ export const Wrapper = styled.div`
   justify-content: start;
   column-gap: 20px;
   background-color: ${({ theme }) => theme.palette.gray5};
-  min-height: 70vh;
 `;

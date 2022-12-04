@@ -1,27 +1,46 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useGetRedux } from "@hooks/useGetRedux";
-import { Wrapper } from "./Styles";
-import { useGetSprints } from "./queries";
-import ElFont from "@components/el-font";
-import { useGetProjects } from "@pages/landing-page/queries";
-import { useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+import { useGetOneProject } from "./queries";
+import { ProjectDetailBox, ProjectContainer } from "./Styles";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  // console.log(projectId);
+  const { data: projectdetail } = useGetOneProject(projectId as string);
+  const length = projectdetail?.length;
+  useEffect(() => {
+    if (projectId) {
+      console.log(projectdetail);
+    }
+  }, [projectId]);
 
-  // const { redux: user } = useGetRedux("user");
-  const { currentUser } = useSelector((state: RootState) => state.user);
-  const { data: projects } = useGetProjects(currentUser.userId);
-
-  // 프로젝트 상세올때 리덕스에 project 정보 싹다 주입하기
-  // const { data: sprints, isSuccess } = useGetSprints(projectId);
-
-  // console.log(isSuccess);
-  // console.log(sprints);
-
-  return <Wrapper>{/* <ElFont size={20} weight={600}>{project</ElFont> */}</Wrapper>;
+  return (
+    <ProjectDetailBox>
+      <div>
+        <h1>Project Detail</h1>
+      </div>
+      <ProjectContainer>
+        {projectdetail ? (
+          <div>
+            <div>ProjectName</div>
+            <p> {projectdetail.projectName}</p>
+            <div>ProjectDetail</div>
+            <p>{projectdetail.projectDetail}</p>
+            <div>ProjectLeader</div>
+            <p>{projectdetail.projectLeader}</p>
+            <div>memberList</div>
+            <p>{projectdetail.memberList}</p>
+            <div>sprintSize</div>
+            <p>{projectdetail.sprintSize}</p>
+          </div>
+        ) : (
+          <div>
+            <p>no Content</p>
+          </div>
+        )}
+      </ProjectContainer>
+    </ProjectDetailBox>
+  );
 };
 
 export default ProjectDetail;

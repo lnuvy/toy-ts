@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ProjectContainer, ButtonWrapper } from "./Styles";
 import MainSearchBar from "@components/main-searchbar";
@@ -8,7 +8,7 @@ import ElFont from "@components/el-font";
 import ElButton from "@components/el-button";
 import { useGetProjects } from "./queries";
 import { RootState } from "@redux/store";
-
+import project from "@redux/modules/project";
 function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,7 +17,10 @@ function LandingPage() {
   const { data: projectList } = useGetProjects(currentUser.userId!);
 
   const length = projectList?.length;
-
+  useEffect(() => {
+    // error
+    // dispatch(project(projectList));
+  }, []);
   const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODOS: 검색 결과 axios 통신
