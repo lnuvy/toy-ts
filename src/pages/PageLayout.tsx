@@ -20,25 +20,37 @@ const Wrapper = styled.div`
     min-height: 100vh;
     justify-content: space-around;
     align-items: center;
+    background-image: url("/image/image15.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "LINESeedKR-Bd";
   }
   .Box {
     max-width: 500px;
     max-height: 700px;
-    border: 1px solid ${({ theme }) => theme.palette.personalDark};
     border-radius: 10px;
     padding: 20px 30px;
+    background-color: ${({ theme }) => theme.palette.gray1};
+    background-color: rgba(255, 255, 255, 0.7);
   }
   h1 {
-    font-size: 50px;
+    margin-top: -25px;
+    font-size: 70px;
     color: ${({ theme }) => theme.palette.personalDark};
     text-align: left;
+  }
+  h2 {
+    color: ${({ theme }) => theme.palette.personalLight4};
   }
   h3 {
     border-radius: 10px;
     font-weight: 600;
-    background-color: ${({ theme }) => theme.palette.personalDark};
-    color: #fff;
     text-align: center;
+  }
+  h4 {
+    color: white;
   }
   form {
     width: 375px;
@@ -57,6 +69,7 @@ const Wrapper = styled.div`
     content: "⚠ ";
   }
   input {
+    font-family: "LINESeedKR-Bd";
     display: block;
     box-sizing: border-box;
     width: 100%;

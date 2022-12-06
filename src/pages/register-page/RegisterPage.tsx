@@ -47,11 +47,10 @@ function RegisterPage() {
   return (
     <PageLayout>
       <div>
-        <h1>ToyProject</h1>
-        <h2>Testaaaaaaaaaaa</h2>
-        <h2>Testaaaaaaaaaaa</h2>
-        <h2>Testaaaaaaaaaaa</h2>
-        <h2>Testaaaaaaaaaaa</h2>
+        <h1>CooFlow</h1>
+        <h2>프로젝트 생성 및 스프린트를 생성하여</h2>
+        <h2>개발, 유지보수에 용이한 웹 사이트입니다.</h2>
+        <h4>문의사항 (moon@naver.com)</h4>
       </div>
       <div className="Box">
         <form onSubmit={handleSubmit(onSubmit)}>
