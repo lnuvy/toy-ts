@@ -11,6 +11,7 @@ interface Props {
     | "personalLight1"
     | "personalLight2"
     | "personalLight3"
+    | "personalLight4"
     | "gray1"
     | "gray2"
     | "gray3"

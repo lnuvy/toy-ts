@@ -9,6 +9,7 @@ declare module "@emotion/react" {
       personalLight1: string;
       personalLight2: string;
       personalLight3: string;
+      personalLight4: string;
       gray1: string;
       gray2: string;
       gray3: string;
