@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSprintInit } from "./api";
-import { useGetSprintInit } from "./queries";
+import { useGetSprintList } from "./queries";
 import { SprintContainer } from "./Styles";
 const SprintPage = () => {
   const { projectId } = useParams();

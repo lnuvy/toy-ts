@@ -11,15 +11,15 @@ interface ReqData {
 }
 
 //sprint list 받기
-const getSprintInit = (projectId: string) => {
+const getSprintList = (projectId: string) => {
   const queryString = QueryString.stringify({ projectId: projectId }, queryStringOptions);
   return customAxios({ method: "get", url: `/personalProject?${queryString}` })
     .then(({ data }) => console.log(data))
     .catch(console.error);
 };
 
-export const useGetSprintInit = (projectId: string) => {
-  return useQuery(["SprintInit", { projectId }], () => getSprintInit(projectId), {
+export const useGetSprintList = (projectId: string) => {
+  return useQuery(["SprintList", { projectId }], () => getSprintList(projectId), {
     enabled: !!projectId,
   });
 };
@@ -38,5 +38,19 @@ export const useAddSprintMutation = () => {
       const { response } = error;
       console.error(response);
     },
+  });
+};
+
+//sprint init
+const getSprintInit = (sprintId: string) => {
+  const queryString = QueryString.stringify({ sprintId: sprintId }, queryStringOptions);
+  return customAxios({ method: "get", url: `/Sprint?${queryString}` })
+    .then(({ data }) => console.log(data))
+    .catch(console.error);
+};
+
+export const useGetSprintInit = (sprintId: string) => {
+  return useQuery(["SprintInit", { sprintId }], () => getSprintInit(sprintId), {
+    enabled: !!sprintId,
   });
 };

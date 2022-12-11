@@ -21,7 +21,7 @@ const getSprints = (projectId: string) => {
 const getOneProject = (projectId: string) => {
   const queryString = QueryString.stringify({ projectId: projectId }, queryStringOptions);
   return customAxios({ method: "get", url: `/personalProject/getOne?${queryString}` })
-    .then(({ data }) => data.data)
+    .then(({ data }) => data)
     .catch(console.error);
 };
 
@@ -39,12 +39,6 @@ export const useAddSprintMutation = () => {
   return useMutation(addSprints, {
     onSuccess: () => {
       alert(`스프린트 생성 완료`);
-      queryClient.setQueryData(["sprints", {}], ({ data }) => {
-        console.log(data);
-        console.log(data);
-        console.log(data);
-        console.log(data);
-      });
     },
     onError: (error: AxiosError) => {
       const { response } = error;

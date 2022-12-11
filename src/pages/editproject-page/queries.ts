@@ -5,16 +5,19 @@ import QueryString from "query-string";
 import { useNavigate } from "react-router-dom";
 
 interface ReqData {
-  id: string;
-  name: string;
+  projectId: string;
+  projectName: string;
+  projectDetails: string;
 }
-const updateName = (data: ReqData) => customAxios({ method: "post", url: "/member-modification", data });
 
-export const useName = () => {
-  const navigate = useNavigate();
+const updateProject = (data: ReqData) => customAxios({ method: "put", url: "/personalProject/update", data });
 
-  return useMutation(updateName, {
+export const useProject = () => {
+  //const navigate = useNavigate();
+
+  return useMutation(updateProject, {
     onSuccess: (response) => {
+      //navigate("/");
       console.log(response);
     },
     onError: (error: AxiosError) => {

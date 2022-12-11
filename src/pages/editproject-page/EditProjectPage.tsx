@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RootState } from "@redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import PageLayout from "@pages/PageLayout";
-import gravatar from "gravatar";
-import { ImageWrapper } from "./Styles";
-import { useName } from "./queries";
-function EditUserPage() {
+import { useProject } from "./queries";
+
+function EditProjectPage() {
+  const { projectId } = useParams();
   const {
     register,
     formState: { errors },
@@ -16,17 +16,16 @@ function EditUserPage() {
   } = useForm();
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
-  const { email, userName, userId } = useSelector((state: RootState) => state.user.currentUser);
-
-  const { mutate: updateusername } = useName();
+  const { mutate: updateProject } = useProject();
 
   const onSubmit = async (data: any) => {
     setLoading(true);
     let result = {
-      id: userId,
+      projectId: projectId,
       ...data,
     };
-    updateusername(result);
+    //console.log(result);
+    updateProject(result);
     setLoading(false);
   };
 
@@ -34,16 +33,18 @@ function EditUserPage() {
     <PageLayout>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ textAlign: "center" }}>
-          <h3>프로필 수정하기</h3>
+          <h3>프로젝트 수정하기</h3>
         </div>
-        <ImageWrapper>
-          <img src={gravatar.url(`${email}`, { s: "220px", d: "retro" })}></img>
-        </ImageWrapper>
 
-        <label>Name</label>
-        <input placeholder={userName} {...register("name", { required: true, maxLength: 10 })} />
+        <label>ProjectName</label>
+        <input {...register("projectName", { required: true, maxLength: 10 })} />
         {errors.name && errors.name.type === "required" && <p>빈칸을 채워주세요</p>}
         {errors.name && errors.name.type === "maxLength" && <p>최대 10글자</p>}
+
+        <label>ProjectDetails</label>
+        <input {...register("projectDetails", { required: true, maxLength: 30 })} />
+        {errors.name && errors.name.type === "required" && <p>빈칸을 채워주세요</p>}
+        {errors.name && errors.name.type === "maxLength" && <p>최대 30글자</p>}
 
         {errorFromSubmit && <p>{errorFromSubmit}</p>}
         <input type="submit" />
@@ -52,4 +53,4 @@ function EditUserPage() {
   );
 }
 
-export default EditUserPage;
+export default EditProjectPage;
