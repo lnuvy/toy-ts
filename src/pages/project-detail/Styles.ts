@@ -11,4 +11,8 @@ export const ProjectContainer = styled.div`
   justify-content: start;
   column-gap: 20px;
   background-color: ${({ theme }) => theme.palette.gray5};
+
+  & > button {
+    color: black;
+  }
 `;
