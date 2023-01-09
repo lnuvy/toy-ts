@@ -28,7 +28,6 @@ export const usePassword = () => {
 
   return useMutation(getPassword, {
     onSuccess: (response) => {
-      console.log(response);
       if (response.data.data === "비밀번호 찾기 실패") {
         alert(response.data.data);
       } else {

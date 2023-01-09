@@ -29,7 +29,6 @@ function LoginPage() {
     }
   }, [navigate]);
   const onSubmit = async (data: any) => {
-    console.log(data);
     setLoading(true);
     loginMutate(data);
     {

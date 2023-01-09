@@ -12,6 +12,10 @@ import { useState } from "react";
 import AuthLayout from "@pages/AuthLayout";
 import EditUserPage from "@pages/edituser-page/EditUserPage";
 import EditProjectPage from "@pages/editproject-page/EditProjectPage";
+import SprintList from "@components/sprint-common/SprintList";
+import JoblistPage from "@pages/joblist-page/JoblistPage";
+import JobList from "@components/joblist-common/JobList";
+import Job from "@pages/joblist-page/AddPage";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -30,8 +34,11 @@ const App = () => {
           <Route path="/project" element={<ProjectPage />} />
           <Route path="/project/:projectId" element={<ProjectDetail />} />
           <Route path="/sprint/:projectId" element={<SprintPage />} />
+          <Route path="/sprintlist/:projectId" element={<SprintList />} />
           <Route path="/edituser" element={<EditUserPage />} />
           <Route path="/editproject/:projectId" element={<EditProjectPage />} />
+          <Route path="/project/sprint/job/:sprintId" element={<Job />} />
+          <Route path="/project/sprint/jobList/:sprintId" element={<JobList />} />
         </Routes>
       </AuthLayout>
     );

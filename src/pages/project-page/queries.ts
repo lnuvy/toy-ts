@@ -41,7 +41,15 @@ export const useDeleteProject = () => {
   const queryClient = useQueryClient();
   return useMutation(deleteProject, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["projects", {}]);
+      console.log("삭제 성공");
+    },
+    onError: (error: AxiosError) => {
+      const { response } = error;
+      if (response && response.status == 302) {
+        console.log("302");
+        //window.location.href = "/";
+      }
+      console.error(response);
     },
   });
 };

@@ -44,7 +44,6 @@ interface Props {
 const ProjectCarousel: React.FC<Props> = () => {
   const { currentUser } = useSelector((state: RootState) => state.user);
   const { data: projectList, isFetched } = useGetProjects(currentUser.userId!);
-  console.log(projectList);
   // const projectList: any = [];
 
   // 등록된 프로젝트 없을때 유도하기
