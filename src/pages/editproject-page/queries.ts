@@ -13,15 +13,18 @@ interface ReqData {
 const updateProject = (data: ReqData) => customAxios({ method: "put", url: "/personalProject/update", data });
 
 export const useProject = () => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return useMutation(updateProject, {
     onSuccess: (response) => {
-      //navigate("/");
+      navigate("/");
       console.log(response);
     },
     onError: (error: AxiosError) => {
       const { response } = error;
+      if (response && response.status == 302) {
+        //window.location.href = "/";
+      }
       console.error(response);
     },
   });

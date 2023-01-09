@@ -18,13 +18,15 @@ const AddPage = () => {
     console.log(e.target.value);
     setValue(e.target.value);
   };
-  const { mutate: addSprintMutate } = useAddSprintMutation();
+  const { mutate: addSprintMutate } = useAddSprintMutation(projectId as string);
 
   const handleClickAddSprint = () => {
+    console.log(checkValue);
     const data = {
       projectId: projectId!,
       sprintName: sprint.title,
       sprintDetails: sprint.details,
+      type: checkValue,
     };
     addSprintMutate(data);
   };

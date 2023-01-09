@@ -8,17 +8,18 @@ interface ReqData {
   projectId: string;
   sprintName: string;
   sprintDetails: string;
+  type: number;
 }
 
 //sprint list 받기
 const getSprintList = (projectId: string) => {
   const queryString = QueryString.stringify({ projectId: projectId }, queryStringOptions);
   return customAxios({ method: "get", url: `/personalProject?${queryString}` })
-    .then(({ data }) => console.log(data))
+    .then(({ data }) => data.data)
     .catch(console.error);
 };
 
-export const useGetSprintList = (projectId: string) => {
+export const useGetSprintList = (projectId: any) => {
   return useQuery(["SprintList", { projectId }], () => getSprintList(projectId), {
     enabled: !!projectId,
   });
@@ -27,7 +28,7 @@ export const useGetSprintList = (projectId: string) => {
 //addSprint
 const addSprint = (data: ReqData) => customAxios({ method: "post", url: `/personalProject/addSprint`, data });
 
-export const useAddSprintMutation = () => {
+export const useAddSprintMutation = (projectId: string) => {
   const navigate = useNavigate();
 
   return useMutation(addSprint, {
@@ -36,6 +37,11 @@ export const useAddSprintMutation = () => {
     },
     onError: (error: AxiosError) => {
       const { response } = error;
+      if (response && response.status == 302) {
+        console.log("302");
+        //navigate(`/project/${projectId}`); //기본페이지가 아닌 전 페이지로 이동
+        //window.location.href = `/`;
+      }
       console.error(response);
     },
   });

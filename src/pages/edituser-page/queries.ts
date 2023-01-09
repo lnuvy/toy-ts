@@ -15,10 +15,14 @@ export const useName = () => {
 
   return useMutation(updateName, {
     onSuccess: (response) => {
-      console.log(response);
+      //navigate("/");
+      window.location.href = "/";
     },
     onError: (error: AxiosError) => {
       const { response } = error;
+      if (response && response.status == 302) {
+        //window.location.href = "/";
+      }
       console.error(response);
     },
   });
