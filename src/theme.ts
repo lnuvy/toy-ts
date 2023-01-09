@@ -6,6 +6,7 @@ export const theme = {
     personalLight1: "#2AC1C1",
     personalLight2: "#2CDEDE",
     personalLight3: "#40F4F4",
+    personalLight4: "#DEFCFA",
     gray1: "#3F4753",
     gray2: "#768390",
     gray3: "#D0D7DE",

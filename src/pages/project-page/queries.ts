@@ -34,7 +34,7 @@ export const useAddProjectMutation = () => {
  * 프로젝트 삭제
  */
 const deleteProject = (data: { projectId: number }) => {
-  return customAxios({ method: "delete", url: `/personalProject/${data?.projectId}` });
+  return customAxios({ method: "delete", url: `/personalProject`, data });
 };
 
 export const useDeleteProject = () => {

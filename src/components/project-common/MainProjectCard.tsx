@@ -23,38 +23,33 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
       deleteProjectMutate({ projectId });
     }
   }, []);
-
-  const { length } = project.memberList;
-
+  const onClickEditProject = () => {
+    navigate(`/editproject/${project.projectId}`);
+  };
   const onClickProject = () => {
     navigate(`/project/${project.projectId}`);
   };
-  return (
-    <Wrapper onClick={onClickProject}>
-      <div className="icon-space">
-        <img src="/svg/setting.svg" alt="setting" />
-        &nbsp;
-        <ElFont size={12} color="gray1">
-          (생성일이나 최근업데이트날짜 보여야할듯)
-        </ElFont>
-        <img src="/svg/waste.svg" alt="waste" onClick={onClickSetting} />
-      </div>
+  const { length } = project.memberList;
 
-      <div className="name-space">
-        <ElFont
-          className="title"
-          size={20}
-          weight={600}
-          onClick={() => {
-            navigate(`/project/${project.projectId}`);
-            console.log("!!");
-          }}
-        >
-          {project.projectName}
-        </ElFont>
-        <ElFont size={12} weight={400} margin="20px 0 0 0">
-          {project.projectDetail}
-        </ElFont>
+  return (
+    <Wrapper>
+      <div className="space">
+        <div className="icon-space">
+          <img src="/svg/setting.svg" alt="setting" onClick={onClickEditProject} />
+          <ElFont size={12} color="gray1">
+            (생성일이나 최근업데이트날짜 보여야할듯)
+          </ElFont>
+          <img src="/svg/waste.svg" alt="waste" onClick={onClickSetting} />
+        </div>
+
+        <div className="name-space">
+          <ElFont className="title" size={20} weight={600} onClick={onClickProject}>
+            {project.projectName}
+          </ElFont>
+          <ElFont size={12} weight={400} margin="20px 0 0 0">
+            {project.projectDetail}
+          </ElFont>
+        </div>
       </div>
 
       <div className="member-space">
@@ -78,12 +73,15 @@ export default MainProjectCard;
 const Wrapper = styled.div`
   max-height: 500px;
   padding: 2rem;
-
+  .space {
+    border-radius: 9px 9px 0 0;
+    background-color: ${({ theme }) => theme.palette.personalLight2};
+  }
   .icon-space {
     width: inherit;
-    position: fixed;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     padding: 1rem;
 
@@ -98,8 +96,6 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 0 1rem;
     min-height: 250px;
-    background-color: ${({ theme }) => theme.palette.personalLight2};
-    border-radius: 9px 9px 0 0;
 
     & > .title {
       transition: transform 0.2s linear;

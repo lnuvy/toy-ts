@@ -20,7 +20,8 @@ const GlobalNavBar = () => {
   const { email, userName, userId } = useSelector((state: RootState) => state.user.currentUser);
   const [openSidebar, setOpenSidebar] = useState(sidebar);
   const [openModal, setOpenModal] = useState(false);
-
+  const { project } = useSelector((state: RootState) => state.project);
+  const length = project?.length;
   const isLogin = getStorage();
   useEffect(() => {
     if (isLogin) {
@@ -115,7 +116,7 @@ const GlobalNavBar = () => {
         <img src={gravatar.url(`${email}`, { s: "36px", d: "retro" })} alt={"asdf"} />
         <div>
           <span id="profile-name">{userName}님</span>
-          <span id="profile-active">진행중인 프로젝트: ?개</span>
+          <span id="profile-active">진행중인 프로젝트: {length}개</span>
         </div>
       </UserProfile>
     </NavigationBarWarp>

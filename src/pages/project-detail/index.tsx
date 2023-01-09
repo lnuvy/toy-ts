@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetOneProject } from "./queries";
 import { ProjectDetailBox, ProjectContainer } from "./Styles";
+import ElFont from "@components/el-font";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
+  const navigate = useNavigate();
   // console.log(projectId);
   const { data: projectdetail } = useGetOneProject(projectId as string);
   const length = projectdetail?.length;
@@ -29,7 +31,7 @@ const ProjectDetail = () => {
             <div>ProjectLeader</div>
             <p>{projectdetail.projectLeader}</p>
             <div>memberList</div>
-            <p>{projectdetail.memberList}</p>
+            {/* <p>{projectdetail.memberList}</p> */}
             <div>sprintSize</div>
             <p>{projectdetail.sprintSize}</p>
           </div>
@@ -38,6 +40,16 @@ const ProjectDetail = () => {
             <p>no Content</p>
           </div>
         )}
+
+        <button
+          onClick={() => {
+            navigate(`/sprint/${projectId}`);
+          }}
+        >
+          <ElFont size={16} color="white">
+            + 프로젝트 추가하기
+          </ElFont>
+        </button>
       </ProjectContainer>
     </ProjectDetailBox>
   );

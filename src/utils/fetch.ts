@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 import QueryString from "query-string";
 
 const customAxios: AxiosInstance = axios.create({
-  baseURL: "http://ec2-52-78-153-0.ap-northeast-2.compute.amazonaws.com:8080",
+  baseURL: "http://52.79.175.148:8080",
   headers: {
     Accept: "application/json, text/plain, */*",
   },
