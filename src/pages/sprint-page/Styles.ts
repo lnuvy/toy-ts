@@ -13,13 +13,3 @@ export const AddSprintBox = styled.div`
   font-family: "LINESeedKR-Bd";
   box-shadow: 12px 24px 24px #ededed;
 `;
-
-export const SprintContainer = styled.div`
-  margin-top: 50px;
-  flex-wrap: wrap;
-  padding: 30px;
-  align-items: center;
-  justify-content: start;
-  column-gap: 20px;
-  background-color: ${({ theme }) => theme.palette.gray5};
-`;
