@@ -25,11 +25,16 @@ const projectSlice = createSlice({
     updateProject: (state, action) => {
       // update~
     },
+
+    sprint: (state, action) => {
+      state.project = state.project;
+      state.sprint = action.payload;
+    },
   },
 });
 
 const { reducer, actions } = projectSlice;
 
-export const { project, addProject, deleteProject, updateProject } = actions;
+export const { project, addProject, deleteProject, updateProject, sprint } = actions;
 
 export default reducer;
