@@ -21,10 +21,16 @@ export interface MemberType {
 }
 
 export interface JobListType {
-  jobId: string;
+  jobId: number;
   toDo: string;
   detail: string;
-  start: Date;
-  end: Date;
-  jobWorkers: object;
+  start: string;
+  end: string;
+  jobWorkers: any;
+}
+
+export interface JobWorkers {
+  userId: string;
+  name: string;
+  email: string;
 }
