@@ -44,7 +44,7 @@ function EditUserPage() {
     if (!e.target.files) {
       return;
     }
-    console.log(e.target.files[0]);
+    console.log(e.target.files);
   }, []);
 
   const onUploadImageButtonClick = useCallback(() => {
@@ -63,8 +63,8 @@ function EditUserPage() {
         <img src={gravatar.url(`${email}`, { s: "220px", d: "retro" })}></img>
       </ImageWrapper>
       <div>
-        <input type="file" accept="image/*" ref={inputRef} />
-        <button onClick={onUploadImageButtonClick}>이미지 업로드</button>
+        <input type="file" accept="image/jpg/*" ref={inputRef} />
+        <button onClick={() => onUploadImage}>이미지 업로드</button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Name</label>

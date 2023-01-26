@@ -8,6 +8,7 @@ interface ReqData {
   id: string;
   name: string;
 }
+
 const updateName = (data: ReqData) => customAxios({ method: "post", url: "/member-modification", data });
 
 export const useName = () => {
@@ -27,3 +28,5 @@ export const useName = () => {
     },
   });
 };
+
+const uploadImage = (data: ReqData) => customAxios({ method: "post", url: "" });

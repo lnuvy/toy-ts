@@ -59,6 +59,7 @@ const ProjectDetail = () => {
             })}
             <div>sprintSize</div>
             <p>{projectdetail.data.sprintSize}</p>
+            <SprintList />
             <button onClick={onClickSprint}>
               <ElFont size={16} color="black">
                 전체 스프린트 확인
