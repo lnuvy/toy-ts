@@ -16,6 +16,7 @@ import SprintList from "@components/sprint-common/SprintList";
 import JoblistPage from "@pages/joblist-page/JoblistPage";
 import JobList from "@components/joblist-common/JobList";
 import Job from "@pages/joblist-page/AddPage";
+import EditJobPage from "@pages/editjob-page/EditJobPage";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/editproject/:projectId" element={<EditProjectPage />} />
           <Route path="/project/sprint/job/:sprintId" element={<Job />} />
           <Route path="/project/sprint/jobList/:sprintId" element={<JobList />} />
+          <Route path="/project/sprint/job/detail/:jobId" element={<EditJobPage />} />
         </Routes>
       </AuthLayout>
     );
