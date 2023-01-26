@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useTable } from "react-table";
+import { useGetSprintList } from "@pages/sprint-page/queries";
 
 const sprintTable = () => {
   const columnData = [
@@ -28,14 +29,14 @@ const sprintTable = () => {
   const columns = useMemo(() => columnData, []);
   const data = [
     {
-      sprintId: "sprintId",
+      sprintId: 1,
       time: "time",
       sprintName: "sprintName",
       sprintDetail: "sprintDetail",
       sprintType: "job",
     },
     {
-      sprintId: "sprintId",
+      sprintId: 2,
       time: "time",
       sprintName: "sprintName",
       sprintDetail: "sprintDetail",
