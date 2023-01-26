@@ -8,6 +8,7 @@ interface ReqData {
   id: string;
   name: string;
 }
+
 const updateName = (data: ReqData) => customAxios({ method: "post", url: "/member-modification", data });
 
 export const useName = () => {
@@ -15,11 +16,17 @@ export const useName = () => {
 
   return useMutation(updateName, {
     onSuccess: (response) => {
-      console.log(response);
+      //navigate("/");
+      window.location.href = "/";
     },
     onError: (error: AxiosError) => {
       const { response } = error;
+      if (response && response.status == 302) {
+        //window.location.href = "/";
+      }
       console.error(response);
     },
   });
 };
+
+const uploadImage = (data: ReqData) => customAxios({ method: "post", url: "" });

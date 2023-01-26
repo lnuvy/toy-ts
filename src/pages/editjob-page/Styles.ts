@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const AddSprintBox = styled.div`
+export const EditJobBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

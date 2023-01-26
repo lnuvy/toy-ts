@@ -19,6 +19,7 @@ const MainProjectCard: React.FC<Props> = ({ project }) => {
     const confirm = window.confirm("이 프로젝트를 삭제할까요?");
 
     if (confirm) {
+      console.log(project);
       const { projectId } = project;
       deleteProjectMutate({ projectId });
     }
