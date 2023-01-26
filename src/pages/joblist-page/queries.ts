@@ -8,11 +8,15 @@ interface ReqData {
   sprintId: string;
   toDo: string;
   detail: string;
-  start: Date;
-  end: Date;
-  workerList: object;
+  start: string;
+  end: string;
+  workerList: any;
 }
-
+interface ReqData2 {
+  jobId: string;
+  toDo: string;
+  jobDetail: string;
+}
 //joblist
 const getJobList = (sprintId: string) => {
   const queryString = QueryString.stringify({ sprintId: sprintId }, queryStringOptions);
@@ -30,12 +34,13 @@ export const useGetJobList = (sprintId: any) => {
 //savejob
 const savejob = (data: ReqData) => customAxios({ method: "post", url: `/project/sprint/job`, data });
 
-export const useSaveJob = () => {
+export const useSaveJob = (sprintId: string) => {
   const navigate = useNavigate();
 
   return useMutation(savejob, {
     onSuccess: () => {
       alert(`저장`);
+      navigate(`/project/sprint/jobList/${sprintId}`);
     },
     onError: (error: AxiosError) => {
       const { response } = error;
@@ -48,14 +53,35 @@ export const useSaveJob = () => {
 };
 
 //delete
-const deletejob = (data: ReqData) => customAxios({ method: "delete", url: `/project/sprint/job`, data });
+const deletejob = (data: { jobId: number }) => customAxios({ method: "delete", url: `/project/sprint/job`, data });
 
-export const useDeleteJob = () => {
+export const useDeleteJob = (sprintId: string) => {
   const navigate = useNavigate();
 
-  return useMutation(savejob, {
+  return useMutation(deletejob, {
     onSuccess: () => {
       alert(`삭제 완료`);
+      navigate(`/project/sprint/jobList/${sprintId}`);
+    },
+    onError: (error: AxiosError) => {
+      const { response } = error;
+      if (response && response.status == 302) {
+        //window.location.href = "/";
+      }
+      console.error(response);
+    },
+  });
+};
+
+//update
+const update = (data: ReqData2) => customAxios({ method: "put", url: `/project/sprint/job/detail`, data });
+
+export const useUpdateJob = () => {
+  const navigate = useNavigate();
+
+  return useMutation(update, {
+    onSuccess: () => {
+      alert(`수정 완료`);
     },
     onError: (error: AxiosError) => {
       const { response } = error;

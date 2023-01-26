@@ -16,15 +16,15 @@ const AddPage = () => {
   const [start, setStart] = useState(new Date());
   const [end, setend] = useState(new Date());
   const workerList = [1];
-  const { mutate: savejob } = useSaveJob();
+  const { mutate: savejob } = useSaveJob(sprintId as string);
 
   const handleClickAddSprint = () => {
     const data = {
       sprintId: sprintId!,
       toDo: job.toDo,
       detail: job.detail,
-      start: job.start,
-      end: job.end,
+      start: start.toLocaleDateString(),
+      end: end.toLocaleDateString(),
       workerList: workerList,
     };
     console.log(data);
